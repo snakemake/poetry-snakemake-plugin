@@ -9,6 +9,9 @@ def test_new_snakemake_executor_plugin(tmp_path):
     run_subcommand("new", "test-plugin")
     os.chdir("test-plugin")
     run_subcommand("scaffold-snakemake-executor-plugin")
+
+    run_subcommand("run", "black", "--check", "--diff", ".")
+    run_subcommand("run", "flake8")
     os.chdir(orig_dir)
 
 

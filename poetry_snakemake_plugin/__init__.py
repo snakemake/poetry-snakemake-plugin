@@ -34,6 +34,7 @@ class ScaffoldSnakemakeExecutorPluginCommand(Command):
         templates = Environment(
             loader=PackageLoader("poetry_snakemake_plugin"),
             autoescape=select_autoescape(),
+            keep_trailing_newline=True,
         )
 
         with open("pyproject.toml", "rb") as f:

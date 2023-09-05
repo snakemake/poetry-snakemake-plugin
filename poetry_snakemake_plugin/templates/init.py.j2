@@ -1,6 +1,5 @@
-
 from dataclasses import dataclass, field
-from typing import List
+from typing import Set, List
 from snakemake_interface_executor_plugins.executors.base import SubmittedJobInfo
 from snakemake_interface_executor_plugins.executors.remote import RemoteExecutor
 from snakemake_interface_executor_plugins import ExecutorSettingsBase, CommonSettings
@@ -17,7 +16,7 @@ from snakemake_interface_executor_plugins.jobs import (
 # Omit this class if you don't need any.
 @dataclass
 class ExecutorSettings(ExecutorSettingsBase):
-    myparam: int=field(default=None, metadata={"help": "Some help text"})
+    myparam: int = field(default=None, metadata={"help": "Some help text"})
 
 
 # Required:
@@ -25,7 +24,7 @@ class ExecutorSettings(ExecutorSettingsBase):
 common_settings = CommonSettings(
     # define whether your executor plugin executes locally
     # or remotely. In virtually all cases, it will be remote execution
-    # (cluster, cloud, etc.). Only Snakemake's standard execution 
+    # (cluster, cloud, etc.). Only Snakemake's standard execution
     # plugins (snakemake-executor-plugin-dryrun, snakemake-executor-plugin-local)
     # are expected to specify False here.
     non_local_exec=True
@@ -39,42 +38,66 @@ class Executor(RemoteExecutor):
         self,
         workflow: WorkflowExecutorInterface,
         logger: LoggerExecutorInterface,
-
     ):
         super().__init__(
             workflow,
             logger,
             # configure behavior of RemoteExecutor below
-            pass_default_remote_provider_args=True,  # whether arguments for setting the remote provider shall  be passed to jobs
-            pass_default_resources_args=True,  # whether arguments for setting default resources shall be passed to jobs
-            pass_envvar_declarations_to_cmd=True,  # whether environment variables shall be passed to jobs
+            # whether arguments for setting the remote provider shall  be passed to jobs
+            pass_default_remote_provider_args=True,
+            # whether arguments for setting default resources shall be passed to jobs
+            pass_default_resources_args=True,
+            # whether environment variables shall be passed to jobs
+            pass_envvar_declarations_to_cmd=True,
         )
         # access workflow
         self.workflow
-        # access executor specific settings 
+        # access executor specific settings
         self.workflow.executor_settings
 
-        # IMPORTANT: in your plugin, only access methods and properties of Snakemake objects (like Workflow, Persistence, etc.)
-        # that are defined in the interfaces found in the snakemake-interface-executor-plugins and the snakemake-interface-common package.
-        # Other parts of those objects are NOT guaranteed to remain stable across new releases.
+        # IMPORTANT: in your plugin, only access methods and properties of
+        # Snakemake objects (like Workflow, Persistence, etc.) that are
+        # defined in the interfaces found in the
+        # snakemake-interface-executor-plugins and the
+        # snakemake-interface-common package.
+        # Other parts of those objects are NOT guaranteed to remain
+        # stable across new releases.
 
-        # To ensure that the used interfaces are not changing, you should depend on this package as
-        # >=a.b.c,<d with d=a+1 (i.e. pin the dependency on this package to be at least the version at time of development
-        # and less than the next major version which would introduce breaking changes).
+        # To ensure that the used interfaces are not changing, you should
+        # depend on these packages as >=a.b.c,<d with d=a+1 (i.e. pin the
+        # dependency on this package to be at least the version at time
+        # of development and less than the next major version which would
+        # introduce breaking changes).
 
     def run_job(self, job: ExecutorJobInterface):
         # Implement here how to run a job.
         # You can access the job's resources, etc.
         # via the job object.
-        # After submitting the job, you have to call self.report_job_submission(job_info).
-        # with job_info being of type snakemake_interface_executor_plugins.executors.base.SubmittedJobInfo.
+        # After submitting the job, you have to call
+        # self.report_job_submission(job_info).
+        # with job_info being of type
+        # snakemake_interface_executor_plugins.executors.base.SubmittedJobInfo.
 
         ...
 
-    def check_active_jobs(self, active_jobs: List[SubmittedJobInfo]):
+    def check_active_jobs(self, active_jobs: Set[SubmittedJobInfo]):
         # Check the status of active jobs.
-        
-        # Jobs that are finished or error out have to be removed from the given list.
-        # For jobs that have finished successfully, you have to call self.report_job_success(job).
-        # For jobs that have errored, you have to call self.report_job_error(job).
+
+        # Jobs that are finished or error out have to be removed from the
+        # given list.
+        # For jobs that have finished successfully, you have to call
+        # self.report_job_success(job).
+        # For jobs that have errored, you have to call
+        # self.report_job_error(job).
+        #
+        # For queries to the remote middleware, please use
+        # self.status_rate_limiter like this:
+        #
+        # async with self.status_rate_limiter:
+        #    # query remote middleware here
+        ...
+
+    def cancel_jobs(self, active_jobs: List[SubmittedJobInfo]):
+        # Cancel all active jobs.
+        # This method is called when Snakemake is interrupted.
         ...
