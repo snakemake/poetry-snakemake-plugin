@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "poetry-snakemake-plugin"
+version = "0.1.0"
+description = ""
+authors = ["Johannes Koester <johannes.koester@uni-due.de>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+poetry = "^1.2"
+cleo = "^2.0.1"
+jinja2 = "^3.1.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.1"
+black = "^23.7.0"
+flake8 = "^6.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.plugins."poetry.application.plugin"]
+scaffold-snakemake-executor-plugin = "poetry_snakemake_plugin:ScaffoldSnakemakeExecutorPlugin"
