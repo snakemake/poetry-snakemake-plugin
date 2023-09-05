@@ -17,6 +17,9 @@ pytest = "^7.4.1"
 black = "^23.7.0"
 flake8 = "^6.1.0"
 
+[tool.coverage.report]
+fail_under = 100
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
