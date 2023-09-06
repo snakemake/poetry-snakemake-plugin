@@ -40,17 +40,25 @@ class ScaffoldSnakemakeExecutorPluginCommand(Command):
         with open("pyproject.toml", "rb") as f:
             pyproject = tomli.load(f)
 
+        executor_name = pyproject["tool"]["poetry"]["name"].replace(
+            "snakemake-executor-plugin-", ""
+        )
+
         def render_template(name, dest: Path):
             dest.parent.mkdir(exist_ok=True, parents=True)
             with open(dest, "w") as f:
-                f.write(templates.get_template(name).render(pyproject=pyproject))
+                f.write(
+                    templates.get_template(name).render(
+                        pyproject=pyproject, executor_name=executor_name
+                    )
+                )
 
         module_path = Path(pyproject["tool"]["poetry"]["name"].replace("-", "_"))
         tests_path = Path("tests")
         workflows_path = Path(".github/workflows")
 
         render_template("init.py", module_path / "__init__.py")
-        render_template("tests.py", tests_path / "tests.py")
+        render_template("tests.py.j2", tests_path / "tests.py")
         render_template("setup.cfg.j2", Path("setup.cfg"))
         render_template("release_please.yml.j2", workflows_path / "release-please.yml")
         render_template("ci.yml.j2", workflows_path / "ci.yml")
