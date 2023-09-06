@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Set, List
+from typing import Set, List, Generator
 from snakemake_interface_executor_plugins.executors.base import SubmittedJobInfo
 from snakemake_interface_executor_plugins.executors.remote import RemoteExecutor
 from snakemake_interface_executor_plugins import ExecutorSettingsBase, CommonSettings
@@ -80,15 +80,15 @@ class Executor(RemoteExecutor):
 
         ...
 
-    def check_active_jobs(self, active_jobs: Set[SubmittedJobInfo]):
+    async def check_active_jobs(self, active_jobs: List[SubmittedJobInfo]) -> Generator[SubmittedJobInfo, None, None]:
         # Check the status of active jobs.
 
-        # Jobs that are finished or error out have to be removed from the
-        # given list.
+        # You have to iterate over the given list active_jobs.
         # For jobs that have finished successfully, you have to call
         # self.report_job_success(job).
         # For jobs that have errored, you have to call
         # self.report_job_error(job).
+        # Jobs that are still running have to be yielded.
         #
         # For queries to the remote middleware, please use
         # self.status_rate_limiter like this:
