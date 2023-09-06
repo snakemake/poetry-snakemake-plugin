@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Set, List, Generator
+from typing import List, Generator
 from snakemake_interface_executor_plugins.executors.base import SubmittedJobInfo
 from snakemake_interface_executor_plugins.executors.remote import RemoteExecutor
 from snakemake_interface_executor_plugins import ExecutorSettingsBase, CommonSettings
@@ -84,7 +84,9 @@ class Executor(RemoteExecutor):
 
         ...
 
-    async def check_active_jobs(self, active_jobs: List[SubmittedJobInfo]) -> Generator[SubmittedJobInfo, None, None]:
+    async def check_active_jobs(
+        self, active_jobs: List[SubmittedJobInfo]
+    ) -> Generator[SubmittedJobInfo, None, None]:
         # Check the status of active jobs.
 
         # You have to iterate over the given list active_jobs.
