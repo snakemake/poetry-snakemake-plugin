@@ -27,7 +27,11 @@ common_settings = CommonSettings(
     # (cluster, cloud, etc.). Only Snakemake's standard execution
     # plugins (snakemake-executor-plugin-dryrun, snakemake-executor-plugin-local)
     # are expected to specify False here.
-    non_local_exec=True
+    non_local_exec=True,
+    # Define whether your executor plugin implies that there is no shared
+    # filesystem (True) or not (False).
+    # This is e.g. the case for cloud execution.
+    implies_no_shared_fs=...,
 )
 
 
