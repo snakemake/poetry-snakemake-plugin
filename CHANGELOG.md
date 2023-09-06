@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.1](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.1.0...v0.1.1) (2023-09-06)
+
+
+### Bug Fixes
+
+* improve description ([c95edea](https://github.com/snakemake/poetry-snakemake-plugin/commit/c95edea466ffac3342846c9dcca8182b806c4e60))
+
+
+### Documentation
+
+* instructions ([cbaf704](https://github.com/snakemake/poetry-snakemake-plugin/commit/cbaf704eac4a3ffff6b5318ee8222ca942ae5bb8))
+
 ## 0.1.0 (2023-09-06)
 
 
