@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "poetry-snakemake-plugin"
 version = "0.1.0"
-description = ""
+description = "A plugin for poetry that adds Snakemake-specific functionality."
 authors = ["Johannes Koester <johannes.koester@uni-due.de>"]
 readme = "README.md"
 
