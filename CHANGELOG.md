@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.0](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.1.1...v0.2.0) (2023-09-07)
+
+
+### Features
+
+* add test template ([08d7b0d](https://github.com/snakemake/poetry-snakemake-plugin/commit/08d7b0dc2c44be120b6b054b1860a18d2e1045db))
+
+
+### Bug Fixes
+
+* fix function output ([2d96cda](https://github.com/snakemake/poetry-snakemake-plugin/commit/2d96cda296173a5a917b986128e139456b2b8857))
+* fixed lints in template, cleanup superfluous file ([d9c64ea](https://github.com/snakemake/poetry-snakemake-plugin/commit/d9c64ea4d501723fb3836aa36e0a403df8323e49))
+
 ## [0.1.1](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.1.0...v0.1.1) (2023-09-06)
 
 
