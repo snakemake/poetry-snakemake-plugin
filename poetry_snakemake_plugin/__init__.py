@@ -57,6 +57,8 @@ class ScaffoldSnakemakeExecutorPluginCommand(Command):
         tests_path = Path("tests")
         workflows_path = Path(".github/workflows")
 
+        (tests_path / "__init__.py").unlink(missing_ok=True)
+
         render_template("init.py", module_path / "__init__.py")
         render_template("tests.py.j2", tests_path / "tests.py")
         render_template("setup.cfg.j2", Path("setup.cfg"))
