@@ -53,6 +53,8 @@ class Executor(RemoteExecutor):
             pass_default_resources_args=True,
             # whether environment variables shall be passed to jobs
             pass_envvar_declarations_to_cmd=True,
+            # specify initial amount of seconds to sleep before checking for job status
+            init_sleep_seconds=0,
         )
         # access workflow
         self.workflow
