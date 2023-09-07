@@ -101,6 +101,9 @@ class Executor(RemoteExecutor):
         #
         # async with self.status_rate_limiter:
         #    # query remote middleware here
+        #
+        # To modify the time until the next call of this method,
+        # you can set self.next_sleep_seconds here.
         ...
 
     def cancel_jobs(self, active_jobs: List[SubmittedJobInfo]):
