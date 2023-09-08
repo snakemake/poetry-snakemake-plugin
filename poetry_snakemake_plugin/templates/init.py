@@ -8,6 +8,7 @@ from snakemake_interface_executor_plugins.logging import LoggerExecutorInterface
 from snakemake_interface_executor_plugins.jobs import (
     ExecutorJobInterface,
 )
+from snakemake_interface_common.exceptions import WorkflowError
 
 
 # Optional:
@@ -74,6 +75,8 @@ class Executor(RemoteExecutor):
         # dependency on this package to be at least the version at time
         # of development and less than the next major version which would
         # introduce breaking changes).
+
+        # In case of errors outside of jobs, please raise a WorkflowError
 
     def run_job(self, job: ExecutorJobInterface):
         # Implement here how to run a job.
