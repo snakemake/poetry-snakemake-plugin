@@ -15,7 +15,14 @@ class ScaffoldSnakemakeExecutorPluginCommand(Command):
 
     def handle(self) -> int:
         # add dependencies
-        sp.run(["poetry", "add", "snakemake-interface-common", "snakemake-interface-executor-plugins"])
+        sp.run(
+            [
+                "poetry",
+                "add",
+                "snakemake-interface-common",
+                "snakemake-interface-executor-plugins",
+            ]
+        )
         sp.run(
             [
                 "poetry",
