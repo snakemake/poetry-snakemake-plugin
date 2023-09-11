@@ -103,6 +103,8 @@ class Executor(RemoteExecutor):
         # self.report_job_submission(job_info).
         # with job_info being of type
         # snakemake_interface_executor_plugins.executors.base.SubmittedJobInfo.
+        # If required, make sure to pass the job's id to the job_info object, as keyword
+        # argument 'external_job_id'.
 
         ...
 
@@ -112,10 +114,14 @@ class Executor(RemoteExecutor):
         # Check the status of active jobs.
 
         # You have to iterate over the given list active_jobs.
+        # If you provided it above, each will have its external_jobid set according
+        # to the information you provided at submission time.
         # For jobs that have finished successfully, you have to call
-        # self.report_job_success(job).
+        # self.report_job_success(active_job).
         # For jobs that have errored, you have to call
-        # self.report_job_error(job).
+        # self.report_job_error(active_job).
+        # This will also take care of providing a proper error message.
+        # Usually there is no need to perform additional logging here.
         # Jobs that are still running have to be yielded.
         #
         # For queries to the remote middleware, please use
