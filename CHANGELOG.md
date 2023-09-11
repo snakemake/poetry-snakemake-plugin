@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.2.1](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.2.0...v0.2.1) (2023-09-11)
+
+
+### Bug Fixes
+
+* add snakemake-interface-common as dependency ([05074f8](https://github.com/snakemake/poetry-snakemake-plugin/commit/05074f8bb1cb52ba3470720fba94880976b67c79))
+* update skeleton tp latest changes in snakemake-interface-executor-plugins ([b69f552](https://github.com/snakemake/poetry-snakemake-plugin/commit/b69f552c2d44e3617ea9b48279d21e586c687af1))
+
+
+### Documentation
+
+* add information about env var specification ([a9827f8](https://github.com/snakemake/poetry-snakemake-plugin/commit/a9827f820b604af8937c8b994ad8be1a14738119))
+* init_sleep_seconds ([f629cc0](https://github.com/snakemake/poetry-snakemake-plugin/commit/f629cc036e4ce3df5ff8ac4aef543003febff80b))
+* mention self.next_sleep_seconds ([e605a6b](https://github.com/snakemake/poetry-snakemake-plugin/commit/e605a6b4b9ecdb0e1ab9f957b5ac3b01e9f1a68d))
+* update skeleton ([9ccff06](https://github.com/snakemake/poetry-snakemake-plugin/commit/9ccff063249062299e87606fe882814e434a0b9a))
+
 ## [0.2.0](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.1.1...v0.2.0) (2023-09-07)
 
 
