@@ -16,8 +16,21 @@ from snakemake_interface_common.exceptions import WorkflowError
 # They will occur in the Snakemake CLI as --<executor-name>-<param-name>
 # Omit this class if you don't need any.
 @dataclass
-class ExecutorSettings(ExecutorSettingsBase):
-    myparam: int = field(default=None, metadata={"help": "Some help text"})
+class ExecutorSettings:
+    myparam: int=field(
+        default=None,
+        metadata={
+            "help": "Some help text", 
+            # optionally request that argument is also available for specification
+            # via an environment variable. The variable will be named automatically as
+            # SNAKEMAKE_<executor-name>_<param-name>, all upper case.
+            # This mechanism should only be used for passwords and usernames.
+            # For other items, we rather recommend to let people use a profile
+            # for setting defaults
+            # (https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles).
+            "env_var": True
+        }
+    )
 
 
 # Required:
