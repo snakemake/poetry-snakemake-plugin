@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.2.1...v0.2.2) (2023-09-11)
+
+
+### Bug Fixes
+
+* fixed formatting and lints ([f38e0e7](https://github.com/snakemake/poetry-snakemake-plugin/commit/f38e0e70b175704e21dcae4dcaf65c3a37aa5832))
+
 ## [0.2.1](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.2.0...v0.2.1) (2023-09-11)
 
 
