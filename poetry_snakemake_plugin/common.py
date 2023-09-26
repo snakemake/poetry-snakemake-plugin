@@ -52,7 +52,8 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
         package_name = pyproject["tool"]["poetry"]["name"]
         if not package_name.startswith(self.get_package_name_prefix()):
             raise ValueError(
-                f"Package name must start with {self.get_package_name_prefix()} (found {package_name}))"
+                f"Package name must start with {self.get_package_name_prefix()} "
+                f"(found {package_name}))"
             )
 
         plugin_name = package_name.replace(self.get_package_name_prefix(), "")

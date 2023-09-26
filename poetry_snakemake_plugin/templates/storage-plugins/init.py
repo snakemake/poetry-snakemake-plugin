@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Any, Iterable, List, Generator, Optional, Sequence
+from typing import Any, Iterable, Optional, Sequence
 from snakemake_interface_storage_plugins.settings import StorageProviderSettingsBase
 from snakemake_interface_storage_plugins.storage_provider import StorageProviderBase
 from snakemake_interface_storage_plugins.storage_object import (
