@@ -6,8 +6,8 @@ def test_new_snakemake_executor_plugin(tmp_path):
     orig_dir = os.getcwd()
     os.chdir(tmp_path)
 
-    run_subcommand("new", "test-plugin")
-    os.chdir("test-plugin")
+    run_subcommand("new", "snakemake-executor-plugin-test")
+    os.chdir("snakemake-executor-plugin-test")
     run_subcommand("scaffold-snakemake-executor-plugin")
 
     run_subcommand("run", "black", "--check", "--diff", ".")
