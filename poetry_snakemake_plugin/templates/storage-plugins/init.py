@@ -1,9 +1,12 @@
 from dataclasses import dataclass, field
 from typing import Any, Iterable, Optional, Sequence
 from snakemake_interface_storage_plugins.settings import StorageProviderSettingsBase
-from snakemake_interface_storage_plugins.storage_provider import StorageProviderBase
+from snakemake_interface_storage_plugins.storage_provider import (
+    StorageProviderBase,
+    StorageQueryValidationResult,
+)
 from snakemake_interface_storage_plugins.storage_object import (
-    AbstractStorageObject,
+    StorageObjectReadWrite,
     retry_decorator,
 )
 from snakemake_interface_storage_plugins.io import IOCacheStorageInterface, Mtime
@@ -49,6 +52,14 @@ class StorageProviderSettings(StorageProviderSettingsBase):
 # You can however use it to store global information or maintain e.g. a connection
 # pool.
 class StorageProvider(StorageProviderBase):
+    @classmethod
+    def is_valid_query(cls, query: str) -> StorageQueryValidationResult:
+        """Return whether the given query is valid for this storage provider."""
+        # Ensure that also queries containing wildcards (e.g. {sample}) are accepted
+        # and considered valid. The wildcards will be resolved before the storage
+        # object is actually used.
+        ...
+
     def list_objects(self, query: Any) -> Iterable[str]:
         """Return an iterator over all objects in the storage that match the query.
 
@@ -58,8 +69,9 @@ class StorageProvider(StorageProviderBase):
 
 
 # Required:
-# Implementation of storage object
-class StorageObject(AbstractStorageObject):
+# Implementation of storage object. If read-only storage (e.g. see 
+# snakemake-storage-http for comparison), inherit from StorageObjectRead instead.
+class StorageObject(StorageObjectReadWrite):
     # For compatibility with future changes, you should not overwrite the __init__
     # method. Instead, use __post_init__ to set additional attributes and initialize
     # futher stuff.
@@ -69,12 +81,6 @@ class StorageObject(AbstractStorageObject):
         # Alternatively, you can e.g. prepare a connection to your storage backend here.
         # and set additional attributes.
         pass
-
-    def validate_query(self):
-        # validate the query (e.g. URL) stored under self.query
-        # This should not perform any lookups, just check that the query is valid
-        # from e.g. a syntactical perspective.
-        ...
 
     async def inventory(self, cache: IOCacheStorageInterface):
         """From this file, try to find as much existence and modification date
@@ -93,6 +99,7 @@ class StorageObject(AbstractStorageObject):
         return None
 
     def close(self):
+        # Close any open connections, unmount stuff, etc.
         ...
 
     # Fallible methods should implement some retry logic.
@@ -118,19 +125,16 @@ class StorageObject(AbstractStorageObject):
         # Ensure that the object is accessible locally under self.localpath
         ...
 
+    # The following to methods are only required if the class inherits from
+    # StorageObjectReadWrite.
+
     @retry_decorator
     def store_object(self):
-        # Ensure that the object is stored at the location specified by self.query.
-        # If the storage is read-only, raise NotImplementedError().
+        # Ensure that the object is stored at the location specified by
+        # self.local_path().
         ...
-
-    def list_all_below_ancestor(self) -> Sequence[str]:
-        """List all items below the primary ancestor of this object
-        (e.g. the bucket name)."""
-        # This is optional and can be left as is
-        raise NotImplementedError()
 
     @retry_decorator
     def remove(self):
-        # This is optional and can be left as is
-        raise NotImplementedError()
+        # Remove the object from the storage.
+        ...
