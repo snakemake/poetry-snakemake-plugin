@@ -81,8 +81,10 @@ class StorageProvider(StorageProviderBase):
 
 
 # Required:
-# Implementation of storage object. If read-only storage (e.g. see
-# snakemake-storage-http for comparison), inherit from StorageObjectRead instead.
+# Implementation of storage object. If certain methods cannot be supported by your
+# storage (e.g. because it is read-only see
+# snakemake-storage-http for comparison), remove the corresponding base classes
+# from the list of inherited items.
 class StorageObject(StorageObjectRead, StorageObjectWrite, StorageObjectGlob):
     # For compatibility with future changes, you should not overwrite the __init__
     # method. Instead, use __post_init__ to set additional attributes and initialize
