@@ -1,15 +1,17 @@
 from dataclasses import dataclass, field
-from typing import Any, Iterable, Optional, Sequence
+from typing import Any, Iterable, Optional
 from snakemake_interface_storage_plugins.settings import StorageProviderSettingsBase
 from snakemake_interface_storage_plugins.storage_provider import (
     StorageProviderBase,
     StorageQueryValidationResult,
 )
 from snakemake_interface_storage_plugins.storage_object import (
-    StorageObjectReadWrite,
+    StorageObjectRead,
+    StorageObjectWrite,
+    StorageObjectGlob,
     retry_decorator,
 )
-from snakemake_interface_storage_plugins.io import IOCacheStorageInterface, Mtime
+from snakemake_interface_storage_plugins.io import IOCacheStorageInterface
 
 
 # Optional:
@@ -52,6 +54,16 @@ class StorageProviderSettings(StorageProviderSettingsBase):
 # You can however use it to store global information or maintain e.g. a connection
 # pool.
 class StorageProvider(StorageProviderBase):
+    # For compatibility with future changes, you should not overwrite the __init__
+    # method. Instead, use __post_init__ to set additional attributes and initialize
+    # futher stuff.
+
+    def __post_init__(self):
+        # This is optional and can be removed if not needed.
+        # Alternatively, you can e.g. prepare a connection to your storage backend here.
+        # and set additional attributes.
+        pass
+
     @classmethod
     def is_valid_query(cls, query: str) -> StorageQueryValidationResult:
         """Return whether the given query is valid for this storage provider."""
@@ -69,9 +81,9 @@ class StorageProvider(StorageProviderBase):
 
 
 # Required:
-# Implementation of storage object. If read-only storage (e.g. see 
+# Implementation of storage object. If read-only storage (e.g. see
 # snakemake-storage-http for comparison), inherit from StorageObjectRead instead.
-class StorageObject(StorageObjectReadWrite):
+class StorageObject(StorageObjectRead, StorageObjectWrite, StorageObjectGlob):
     # For compatibility with future changes, you should not overwrite the __init__
     # method. Instead, use __post_init__ to set additional attributes and initialize
     # futher stuff.
@@ -98,6 +110,10 @@ class StorageObject(StorageObjectReadWrite):
         # this is optional and can be left as is
         return None
 
+    def local_suffix(self) -> str:
+        """Return a unique suffix for the local path, determined from self.query."""
+        ...
+
     def close(self):
         # Close any open connections, unmount stuff, etc.
         ...
@@ -111,7 +127,7 @@ class StorageObject(StorageObjectReadWrite):
         ...
 
     @retry_decorator
-    def mtime(self) -> Mtime:
+    def mtime(self) -> float:
         # return the modification time
         ...
 
@@ -122,7 +138,7 @@ class StorageObject(StorageObjectReadWrite):
 
     @retry_decorator
     def retrieve_object(self):
-        # Ensure that the object is accessible locally under self.localpath
+        # Ensure that the object is accessible locally under self.local_path()
         ...
 
     # The following to methods are only required if the class inherits from
@@ -137,4 +153,14 @@ class StorageObject(StorageObjectReadWrite):
     @retry_decorator
     def remove(self):
         # Remove the object from the storage.
+        ...
+
+    # The following to methods are only required if the class inherits from
+    # StorageObjectGlob.
+
+    @retry_decorator
+    def list_candidate_matches(self) -> Iterable[str]:
+        """Return a list of candidate matches in the storage for the query."""
+        # This is used by glob_wildcards() to find matches for wildcards in the query.
+        # The method has to return concretized queries without any remaining wildcards.
         ...
