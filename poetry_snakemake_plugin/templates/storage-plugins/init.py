@@ -42,6 +42,9 @@ class StorageProviderSettings(StorageProviderSettingsBase):
             # Optionally specify a function that parses the value given by the user.
             # This is useful to create complex types from the user input.
             "parse_func": ...,
+            # If a parse_func is specified, you also have to specify an unparse_func
+            # that converts the parsed value back to a string.
+            "unparse_func": ...,
             # Optionally specify that setting is required when the executor is in use.
             "required": True,
         },
