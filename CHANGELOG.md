@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.3.0](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.2.2...v0.3.0) (2023-10-17)
+
+
+### Features
+
+* add unparse_func ([b5cd066](https://github.com/snakemake/poetry-snakemake-plugin/commit/b5cd0669f26fe19168d5d304e01e2055dc080707))
+* support for storage plugins ([a769e93](https://github.com/snakemake/poetry-snakemake-plugin/commit/a769e93d8685c93775182fa0baf729c3410c7d83))
+
+
+### Bug Fixes
+
+* adapt to API changes in snakemake-interface-storage-plugins ([70c0655](https://github.com/snakemake/poetry-snakemake-plugin/commit/70c0655896ae0681e3c05888da2ff55482357646))
+* adapt to upcoming API changes in Snakemake 8 ([97f5a50](https://github.com/snakemake/poetry-snakemake-plugin/commit/97f5a50d8a98f2bea45b1a5cea7e117e565e7a3f))
+
+
+### Documentation
+
+* add explanation for envvar handling ([16b7884](https://github.com/snakemake/poetry-snakemake-plugin/commit/16b78844c2338b94ce0e98222fec8bb183bec9ec))
+* improve documentation ([976c05e](https://github.com/snakemake/poetry-snakemake-plugin/commit/976c05ededde9f97b4bf10460e0e3a1de4f411f8))
+
 ## [0.2.2](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.2.1...v0.2.2) (2023-09-11)
 
 
