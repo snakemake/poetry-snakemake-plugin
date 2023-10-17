@@ -3,6 +3,8 @@ import snakemake.common.tests
 from snakemake_interface_executor_plugins.settings import ExecutorSettingsBase
 
 
+# Check out the base classes found here for all possible options and methods:
+# https://github.com/snakemake/snakemake/blob/main/snakemake/common/tests/__init__.py
 class TestWorkflowsBase(snakemake.common.tests.TestWorkflowsBase):
     __test__ = True
 
@@ -13,12 +15,3 @@ class TestWorkflowsBase(snakemake.common.tests.TestWorkflowsBase):
         # instantiate ExecutorSettings of this plugin as appropriate
         ...
 
-    def get_default_storage_provider(self) -> Optional[str]:
-        # Return name of default storage provider if required for testing,
-        # otherwise None.
-        ...
-
-    def get_default_storage_prefix(self) -> Optional[str]:
-        # Return default storage prefix if required for testing,
-        # otherwise None.
-        ...
