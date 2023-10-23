@@ -14,6 +14,10 @@ class ScaffoldSnakemakeExecutorPlugin(ApplicationPlugin):
             ScaffoldSnakemakeExecutorPluginCommand.name,
             ScaffoldSnakemakeExecutorPluginCommand,
         )
+
+
+class ScaffoldSnakemakeStoragePlugin(ApplicationPlugin):
+    def activate(self, application):
         application.command_loader.register_factory(
             ScaffoldSnakemakeStoragePluginCommand.name,
             ScaffoldSnakemakeStoragePluginCommand,
