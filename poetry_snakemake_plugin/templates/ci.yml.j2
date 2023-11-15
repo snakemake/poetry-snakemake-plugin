@@ -13,15 +13,19 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v3
 
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
       - name: Install poetry
-        run: pipx install poetry
+        run: pip install poetry
 
       - name: Determine dependencies
         run: poetry lock
 
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: "3.11"
           cache: poetry
 
       - name: Install Dependencies using Poetry
@@ -36,15 +40,19 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v3
 
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
       - name: Install poetry
-        run: pipx install poetry
+        run: pip install poetry
 
       - name: Determine dependencies
         run: poetry lock
 
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: "3.11"
           cache: poetry
 
       - name: Install Dependencies using Poetry
@@ -58,15 +66,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
       - name: Install poetry
-        run: pipx install poetry
+        run: pip install poetry
 
       - name: Determine dependencies
         run: poetry lock
 
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: "3.11"
           cache: poetry
 
       - name: Install dependencies
