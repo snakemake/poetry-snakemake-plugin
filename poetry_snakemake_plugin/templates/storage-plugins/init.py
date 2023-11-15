@@ -108,7 +108,7 @@ class StorageObject(StorageObjectRead, StorageObjectWrite, StorageObjectGlob):
 
         # If this is implemented in a storage object, results have to be stored in
         # the given IOCache object, using self.cache_key() as key.
-        # Optionally, this can take a custom local suffix, needed e.g. when you want 
+        # Optionally, this can take a custom local suffix, needed e.g. when you want
         # to cache more items than the current query: self.cache_key(local_suffix=...)
         pass
 

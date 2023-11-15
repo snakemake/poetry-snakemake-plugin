@@ -6,7 +6,7 @@ from snakemake_interface_storage_plugins.settings import StorageProviderSettings
 
 class TestStorageNoSettings(TestStorageBase):
     __test__ = True
-    retrieve_only = False # set to True if the storage is read-only
+    retrieve_only = False  # set to True if the storage is read-only
 
     def get_query(self) -> str:
         # Return a query. If retrieve_only is True, this should be a query that
