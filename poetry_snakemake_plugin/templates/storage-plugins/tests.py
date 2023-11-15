@@ -11,6 +11,9 @@ class TestStorageNoSettings(TestStorageBase):
     def get_query(self) -> str:
         ...
 
+    def get_query_not_existing(self) -> str:
+        ...
+
     def get_storage_provider_cls(self) -> Type[StorageProviderBase]:
         # Return the StorageProvider class of this plugin
         ...
