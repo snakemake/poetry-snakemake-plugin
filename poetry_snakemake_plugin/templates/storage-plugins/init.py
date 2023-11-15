@@ -148,6 +148,8 @@ class StorageObject(StorageObjectRead, StorageObjectWrite, StorageObjectGlob):
 
     def cleanup(self):
         """Perform local cleanup of any remainders of the storage object."""
+        # self.local_path() should not be removed, as this is taken care of by
+        # Snakemake.
         ...
 
     # Fallible methods should implement some retry logic.
