@@ -107,7 +107,9 @@ class StorageObject(StorageObjectRead, StorageObjectWrite, StorageObjectGlob):
         # This is optional and can be left as is
 
         # If this is implemented in a storage object, results have to be stored in
-        # the given IOCache object.
+        # the given IOCache object, using self.cache_key() as key.
+        # Optionally, this can take a custom local suffix, needed e.g. when you want
+        # to cache more items than the current query: self.cache_key(local_suffix=...)
         pass
 
     def get_inventory_parent(self) -> Optional[str]:
@@ -168,4 +170,6 @@ class StorageObject(StorageObjectRead, StorageObjectWrite, StorageObjectGlob):
         """Return a list of candidate matches in the storage for the query."""
         # This is used by glob_wildcards() to find matches for wildcards in the query.
         # The method has to return concretized queries without any remaining wildcards.
+        # Use snakemake_executor_plugins.io.get_constant_prefix(self.query) to get the
+        # prefix of the query before the first wildcard.
         ...
