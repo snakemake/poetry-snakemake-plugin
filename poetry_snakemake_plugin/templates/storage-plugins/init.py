@@ -146,8 +146,8 @@ class StorageObject(StorageObjectRead, StorageObjectWrite, StorageObjectGlob):
         """Return a unique suffix for the local path, determined from self.query."""
         ...
 
-    def close(self):
-        # Close any open connections, unmount stuff, etc.
+    def cleanup(self):
+        """Perform local cleanup of any remainders of the storage object."""
         ...
 
     # Fallible methods should implement some retry logic.
