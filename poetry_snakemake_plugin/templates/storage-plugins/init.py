@@ -107,7 +107,9 @@ class StorageObject(StorageObjectRead, StorageObjectWrite, StorageObjectGlob):
         # This is optional and can be left as is
 
         # If this is implemented in a storage object, results have to be stored in
-        # the given IOCache object, using self.local_path() as key.
+        # the given IOCache object, using self.cache_key() as key.
+        # Optionally, this can take a custom local suffix, needed e.g. when you want 
+        # to cache more items than the current query: self.cache_key(local_suffix=...)
         pass
 
     def get_inventory_parent(self) -> Optional[str]:
