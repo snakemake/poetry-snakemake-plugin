@@ -4,6 +4,8 @@ from snakemake_interface_storage_plugins.settings import StorageProviderSettings
 from snakemake_interface_storage_plugins.storage_provider import (
     StorageProviderBase,
     StorageQueryValidationResult,
+    ExampleQuery,
+    Operation,
 )
 from snakemake_interface_storage_plugins.storage_object import (
     StorageObjectRead,
@@ -66,6 +68,29 @@ class StorageProvider(StorageProviderBase):
         # Alternatively, you can e.g. prepare a connection to your storage backend here.
         # and set additional attributes.
         pass
+
+    @classmethod
+    def example_query(cls) -> ExampleQuery:
+        """Return an example query with description for this storage provider."""
+        ...
+
+    def rate_limiter_key(self, query: str, operation: Operation) -> Any:
+        """Return a key for identifying a rate limiter given a query and an operation.
+
+        This is used to identify a rate limiter for the query.
+        E.g. for a storage provider like http that would be the host name.
+        For s3 it might be just the endpoint URL.
+        """
+        ...
+
+    def default_max_requests_per_second(self) -> float:
+        """Return the default maximum number of requests per second for this storage
+        provider."""
+        ...
+
+    def use_rate_limiter(self) -> bool:
+        """Return False if no rate limiting is needed for this provider."""
+        ...
 
     @classmethod
     def is_valid_query(cls, query: str) -> StorageQueryValidationResult:
