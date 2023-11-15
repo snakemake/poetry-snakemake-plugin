@@ -38,6 +38,10 @@ jobs:
         with:
           python-version: "3.11"
           cache: poetry
+      
+      - name: Install Dependencies using Poetry
+        run: |
+          poetry install
 
       - name: Publish to PyPi
         env:
