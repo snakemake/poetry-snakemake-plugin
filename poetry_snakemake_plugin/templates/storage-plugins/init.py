@@ -100,13 +100,6 @@ class StorageProvider(StorageProviderBase):
         # object is actually used.
         ...
 
-    def list_objects(self, query: Any) -> Iterable[str]:
-        """Return an iterator over all objects in the storage that match the query.
-
-        This is optional and can raise a NotImplementedError() instead.
-        """
-        ...
-
 
 # Required:
 # Implementation of storage object. If certain methods cannot be supported by your
