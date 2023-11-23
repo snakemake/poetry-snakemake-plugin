@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.2](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.3.1...v0.3.2) (2023-11-23)
+
+
+### Bug Fixes
+
+* improve templates ([920825f](https://github.com/snakemake/poetry-snakemake-plugin/commit/920825f5d5554362dc12a05fe1548d3527bce53c))
+* remove superfluous method ([36dcc42](https://github.com/snakemake/poetry-snakemake-plugin/commit/36dcc421c18691fc7a46362b959b903b04a42f49))
+
 ## [0.3.1](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.3.0...v0.3.1) (2023-11-15)
 
 
