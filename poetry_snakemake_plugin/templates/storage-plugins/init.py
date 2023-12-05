@@ -1,11 +1,12 @@
 from dataclasses import dataclass, field
-from typing import Any, Iterable, Optional
+from typing import Any, Iterable, Optional, List
 from snakemake_interface_storage_plugins.settings import StorageProviderSettingsBase
 from snakemake_interface_storage_plugins.storage_provider import (
     StorageProviderBase,
     StorageQueryValidationResult,
     ExampleQuery,
     Operation,
+    QueryType,
 )
 from snakemake_interface_storage_plugins.storage_object import (
     StorageObjectRead,
@@ -70,8 +71,8 @@ class StorageProvider(StorageProviderBase):
         pass
 
     @classmethod
-    def example_query(cls) -> ExampleQuery:
-        """Return an example query with description for this storage provider."""
+    def example_queries(cls) -> List[ExampleQuery]:
+        """Return an example queries with description for this storage provider (at least one)."""
         ...
 
     def rate_limiter_key(self, query: str, operation: Operation) -> Any:
