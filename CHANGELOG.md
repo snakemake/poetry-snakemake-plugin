@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.3](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.3.2...v0.3.3) (2023-12-06)
+
+
+### Bug Fixes
+
+* adapt to interface changes ([#12](https://github.com/snakemake/poetry-snakemake-plugin/issues/12)) ([513e702](https://github.com/snakemake/poetry-snakemake-plugin/commit/513e7028952da9826dfc4453ffcc434d4dd079a0))
+
 ## [0.3.2](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.3.1...v0.3.2) (2023-11-23)
 
 
