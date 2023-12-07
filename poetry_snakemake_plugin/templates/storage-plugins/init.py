@@ -1,9 +1,12 @@
 from dataclasses import dataclass, field
-from typing import Any, Iterable, Optional
+from typing import Any, Iterable, Optional, List
 from snakemake_interface_storage_plugins.settings import StorageProviderSettingsBase
-from snakemake_interface_storage_plugins.storage_provider import (
+from snakemake_interface_storage_plugins.storage_provider import (  # noqa: F401
     StorageProviderBase,
     StorageQueryValidationResult,
+    ExampleQuery,
+    Operation,
+    QueryType,
 )
 from snakemake_interface_storage_plugins.storage_object import (
     StorageObjectRead,
@@ -68,18 +71,35 @@ class StorageProvider(StorageProviderBase):
         pass
 
     @classmethod
+    def example_queries(cls) -> List[ExampleQuery]:
+        """Return an example queries with description for this storage provider (at
+        least one)."""
+        ...
+
+    def rate_limiter_key(self, query: str, operation: Operation) -> Any:
+        """Return a key for identifying a rate limiter given a query and an operation.
+
+        This is used to identify a rate limiter for the query.
+        E.g. for a storage provider like http that would be the host name.
+        For s3 it might be just the endpoint URL.
+        """
+        ...
+
+    def default_max_requests_per_second(self) -> float:
+        """Return the default maximum number of requests per second for this storage
+        provider."""
+        ...
+
+    def use_rate_limiter(self) -> bool:
+        """Return False if no rate limiting is needed for this provider."""
+        ...
+
+    @classmethod
     def is_valid_query(cls, query: str) -> StorageQueryValidationResult:
         """Return whether the given query is valid for this storage provider."""
         # Ensure that also queries containing wildcards (e.g. {sample}) are accepted
         # and considered valid. The wildcards will be resolved before the storage
         # object is actually used.
-        ...
-
-    def list_objects(self, query: Any) -> Iterable[str]:
-        """Return an iterator over all objects in the storage that match the query.
-
-        This is optional and can raise a NotImplementedError() instead.
-        """
         ...
 
 
@@ -121,8 +141,10 @@ class StorageObject(StorageObjectRead, StorageObjectWrite, StorageObjectGlob):
         """Return a unique suffix for the local path, determined from self.query."""
         ...
 
-    def close(self):
-        # Close any open connections, unmount stuff, etc.
+    def cleanup(self):
+        """Perform local cleanup of any remainders of the storage object."""
+        # self.local_path() should not be removed, as this is taken care of by
+        # Snakemake.
         ...
 
     # Fallible methods should implement some retry logic.

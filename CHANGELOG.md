@@ -1,5 +1,35 @@
 # Changelog
 
+## [0.3.3](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.3.2...v0.3.3) (2023-12-06)
+
+
+### Bug Fixes
+
+* adapt to interface changes ([#12](https://github.com/snakemake/poetry-snakemake-plugin/issues/12)) ([513e702](https://github.com/snakemake/poetry-snakemake-plugin/commit/513e7028952da9826dfc4453ffcc434d4dd079a0))
+
+## [0.3.2](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.3.1...v0.3.2) (2023-11-23)
+
+
+### Bug Fixes
+
+* improve templates ([920825f](https://github.com/snakemake/poetry-snakemake-plugin/commit/920825f5d5554362dc12a05fe1548d3527bce53c))
+* remove superfluous method ([36dcc42](https://github.com/snakemake/poetry-snakemake-plugin/commit/36dcc421c18691fc7a46362b959b903b04a42f49))
+
+## [0.3.1](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.3.0...v0.3.1) (2023-11-15)
+
+
+### Bug Fixes
+
+* update storage plugin template ([cabf4d8](https://github.com/snakemake/poetry-snakemake-plugin/commit/cabf4d850e24567a2aa3abaf7c14d257e4f2bf70))
+* update template ([35c733d](https://github.com/snakemake/poetry-snakemake-plugin/commit/35c733d5597cff9dcb6fafd97dfb8c4c967df83b))
+* update test template ([13037c7](https://github.com/snakemake/poetry-snakemake-plugin/commit/13037c7611bb9a87afbe495d00279502d9040a46))
+* update test template ([175ac0a](https://github.com/snakemake/poetry-snakemake-plugin/commit/175ac0a9148b8c9526d21472165dc8dc7f7425e5))
+
+
+### Documentation
+
+* update comments in template ([c503631](https://github.com/snakemake/poetry-snakemake-plugin/commit/c5036311d9b979869c15819728ad7b43999ef340))
+
 ## [0.3.0](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.2.2...v0.3.0) (2023-10-17)
 
 
