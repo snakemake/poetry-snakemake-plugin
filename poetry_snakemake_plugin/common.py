@@ -48,7 +48,7 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
             keep_trailing_newline=True,
         )
 
-        with open("pyproject.toml", "rb") as f:
+        with open("pyproject.toml", "r") as f:
             pyproject = toml.load(f)
 
         package_name = pyproject["tool"]["poetry"]["name"]
@@ -60,7 +60,7 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
 
         plugin_name = package_name.replace(self.get_package_name_prefix(), "")
 
-        pyproject["tool"]["poetry"]["repository"] = "# add your repository here"
+        pyproject["tool"]["poetry"]["repository"] = "# add your repository URL here"
         pyproject["tool"]["poetry"]["documentation"] = (
             "https://snakemake.github.io/snakemake-plugin-catalog/plugins/"
             f"{self.get_plugin_type()}/{plugin_name}.html"
