@@ -5,7 +5,6 @@ from cleo.commands.command import Command
 import subprocess as sp
 from jinja2 import Environment, PackageLoader, select_autoescape
 import toml
-import tomli
 
 
 class ScaffoldSnakemakePluginCommandBase(Command, ABC):
@@ -62,9 +61,10 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
         plugin_name = package_name.replace(self.get_package_name_prefix(), "")
 
         pyproject["tool"]["poetry"]["repository"] = "# add your repository here"
-        pyproject["tool"]["poetry"][
-            "documentation"
-        ] = f"https://snakemake.github.io/snakemake-plugin-catalog/plugins/{self.get_plugin_type()}/{plugin_name}.html"
+        pyproject["tool"]["poetry"]["documentation"] = (
+            "https://snakemake.github.io/snakemake-plugin-catalog/plugins/"
+            f"{self.get_plugin_type()}/{plugin_name}.html"
+        )
 
         with open("pyproject.toml", "w") as f:
             toml.dump(pyproject, f)
