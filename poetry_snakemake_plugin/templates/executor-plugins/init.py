@@ -7,7 +7,7 @@ from snakemake_interface_executor_plugins.settings import (
     CommonSettings,
 )
 from snakemake_interface_executor_plugins.jobs import (
-    ExecutorJobInterface,
+    JobExecutorInterface,
 )
 from snakemake_interface_common.exceptions import WorkflowError  # noqa
 
@@ -95,7 +95,7 @@ class Executor(RemoteExecutor):
 
         # In case of errors outside of jobs, please raise a WorkflowError
 
-    def run_job(self, job: ExecutorJobInterface):
+    def run_job(self, job: JobExecutorInterface):
         # Implement here how to run a job.
         # You can access the job's resources, etc.
         # via the job object.
