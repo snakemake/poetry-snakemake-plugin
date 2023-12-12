@@ -5,6 +5,9 @@ on:
 
 name: release-please
 
+env:
+  PYTHON_VERSION: 3.11
+
 jobs:
   release-please:
     runs-on: ubuntu-latest
@@ -26,7 +29,7 @@ jobs:
 
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: {{ "${{ env.PYTHON_VERSION }}" }}
 
       - name: Install poetry
         run: pip install poetry
@@ -36,7 +39,7 @@ jobs:
 
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: {{ "${{ env.PYTHON_VERSION }}" }}
           cache: poetry
       
       - name: Install Dependencies using Poetry
