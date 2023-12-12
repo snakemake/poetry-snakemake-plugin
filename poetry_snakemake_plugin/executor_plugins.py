@@ -11,14 +11,11 @@ class ScaffoldSnakemakeExecutorPluginCommand(ScaffoldSnakemakePluginCommandBase)
         "dependencies and code snippets."
     )
 
-    def get_dependencies(self) -> List[str]:
-        return ["snakemake-interface-executor-plugins"]
-
-    def get_package_name_prefix(self) -> str:
-        return "snakemake-executor-plugin-"
-
     def get_templates(self, module_path: Path, tests_path: Path) -> List[str]:
         return [
             ("executor-plugins/init.py", module_path / "__init__.py"),
             ("executor-plugins/tests.py.j2", tests_path / "tests.py"),
         ]
+
+    def get_plugin_type(self) -> str:
+        return "executor"
