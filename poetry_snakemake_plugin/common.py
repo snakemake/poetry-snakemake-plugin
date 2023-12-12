@@ -60,7 +60,7 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
 
         plugin_name = package_name.replace(self.get_package_name_prefix(), "")
 
-        pyproject["tool"]["poetry"]["repository"] = "# add your repository URL here"
+        pyproject["tool"]["poetry"]["repository"] = "https://github.com/your/plugin"
         pyproject["tool"]["poetry"]["documentation"] = (
             "https://snakemake.github.io/snakemake-plugin-catalog/plugins/"
             f"{self.get_plugin_type()}/{plugin_name}.html"
