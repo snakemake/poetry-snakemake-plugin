@@ -7,7 +7,7 @@ from snakemake_interface_executor_plugins.settings import (
     CommonSettings,
 )
 from snakemake_interface_executor_plugins.jobs import (
-    ExecutorJobInterface,
+    JobExecutorInterface,
 )
 from snakemake_interface_common.exceptions import WorkflowError  # noqa
 
@@ -53,7 +53,10 @@ common_settings = CommonSettings(
     # plugins (snakemake-executor-plugin-dryrun, snakemake-executor-plugin-local)
     # are expected to specify False here.
     non_local_exec=True,
+    # Whether the executor implies to not have a shared file system
     implies_no_shared_fs=True,
+    # whether to deploy workflow sources to default storage provider before execution
+    job_deploy_sources=True,
     # whether arguments for setting the storage provider shall be passed to jobs
     pass_default_storage_provider_args=True,
     # whether arguments for setting default resources shall be passed to jobs
@@ -95,7 +98,7 @@ class Executor(RemoteExecutor):
 
         # In case of errors outside of jobs, please raise a WorkflowError
 
-    def run_job(self, job: ExecutorJobInterface):
+    def run_job(self, job: JobExecutorInterface):
         # Implement here how to run a job.
         # You can access the job's resources, etc.
         # via the job object.
