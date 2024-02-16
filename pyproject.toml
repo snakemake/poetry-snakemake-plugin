@@ -27,4 +27,4 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.poetry.plugins."poetry.application.plugin"]
-scaffold-snakemake-executor-plugin = "poetry_snakemake_plugin:ScaffoldSnakemakeExecutorPlugin"
+scaffold-snakemake-plugin = "poetry_snakemake_plugin:ScaffoldSnakemakeExecutorPlugin"
