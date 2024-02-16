@@ -16,6 +16,7 @@ class TestStorage(TestStorageBase):
         ...
 
     def get_query_not_existing(self, tmp_path) -> str:
+        # Return a query that is not present in the storage.
         ...
 
     def get_storage_provider_cls(self) -> Type[StorageProviderBase]:
