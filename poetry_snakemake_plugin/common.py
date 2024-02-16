@@ -9,10 +9,12 @@ import toml
 
 class ScaffoldSnakemakePluginCommandBase(Command, ABC):
     @abstractmethod
-    def get_templates(self) -> List[str]: ...
+    def get_templates(self) -> List[str]:
+        ...
 
     @abstractmethod
-    def get_plugin_type(self) -> str: ...
+    def get_plugin_type(self) -> str:
+        ...
 
     def get_dependencies(self) -> List[str]:
         return [f"snakemake-interface-{self.get_plugin_type()}-plugins"]

@@ -15,7 +15,8 @@ class TestStorage(TestStorageBase):
         # is present in the storage, as it will not be created.
         ...
 
-    def get_query_not_existing(self, tmp_path) -> str: ...
+    def get_query_not_existing(self, tmp_path) -> str:
+        ...
 
     def get_storage_provider_cls(self) -> Type[StorageProviderBase]:
         # Return the StorageProvider class of this plugin
