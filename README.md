@@ -52,3 +52,26 @@ poetry scaffold-snakemake-storage-plugin
 # creates github actions workflows that will immediately start to check and test
 # the plugin.
 ```
+
+## Scaffolding a report plugin
+
+Lets assume that you want to create a snakemake report plugin with the name `snakemake-report-plugin-myfancyreport`.
+
+```bash
+
+# Install poetry plugin via
+poetry self add poetry-snakemake-plugin
+
+# Create a new poetry project via
+poetry new snakemake-report-plugin-myfancyreport
+
+cd snakemake-storage-plugin-myfancyreport
+
+# Scaffold the project as a snakemake executor plugin
+poetry scaffold-snakemake-report-plugin
+
+# Next, edit the scaffolded code according to your needs, and publish
+# the resulting plugin into a github repository. The scaffold command also 
+# creates github actions workflows that will immediately start to check and test
+# the plugin.
+```
