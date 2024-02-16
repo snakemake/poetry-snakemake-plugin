@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.3.4...v0.4.0) (2024-02-16)
+
+
+### Features
+
+* support for report plugins ([#18](https://github.com/snakemake/poetry-snakemake-plugin/issues/18)) ([91da3d3](https://github.com/snakemake/poetry-snakemake-plugin/commit/91da3d3d4c992eb48dcd3a350717388dfc97a57b))
+
+
+### Bug Fixes
+
+* python version order and CI scaffold ([#9](https://github.com/snakemake/poetry-snakemake-plugin/issues/9)) ([f5f7250](https://github.com/snakemake/poetry-snakemake-plugin/commit/f5f725065bf2fb056ebc4fcfb3efa04a7489bb40))
+
 ## [0.3.4](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.3.3...v0.3.4) (2023-12-12)
 
 
