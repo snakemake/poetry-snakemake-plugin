@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.4](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.3.3...v0.3.4) (2023-12-12)
+
+
+### Bug Fixes
+
+* adapt to interface changes; add more metadata to templates ([#14](https://github.com/snakemake/poetry-snakemake-plugin/issues/14)) ([d3efe48](https://github.com/snakemake/poetry-snakemake-plugin/commit/d3efe48ba27fdade0d56920463448b9d90f24606))
+* job_deploy_sources in CommonSettings ([#16](https://github.com/snakemake/poetry-snakemake-plugin/issues/16)) ([321998e](https://github.com/snakemake/poetry-snakemake-plugin/commit/321998e62771b8a4af0d9534fefac1f813d30a38))
+* JobExecutorInterface ([#15](https://github.com/snakemake/poetry-snakemake-plugin/issues/15)) ([8cb86f3](https://github.com/snakemake/poetry-snakemake-plugin/commit/8cb86f39bd0a47fa8559dd9cfbff211ca6b3530d))
+
 ## [0.3.3](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.3.2...v0.3.3) (2023-12-06)
 
 

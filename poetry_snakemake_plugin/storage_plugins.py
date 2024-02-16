@@ -11,14 +11,11 @@ class ScaffoldSnakemakeStoragePluginCommand(ScaffoldSnakemakePluginCommandBase):
         "dependencies and code snippets."
     )
 
-    def get_dependencies(self) -> List[str]:
-        return ["snakemake-interface-storage-plugins"]
-
-    def get_package_name_prefix(self) -> str:
-        return "snakemake-storage-plugin-"
-
     def get_templates(self, module_path: Path, tests_path: Path) -> List[str]:
         return [
             ("storage-plugins/init.py", module_path / "__init__.py"),
             ("storage-plugins/tests.py", tests_path / "tests.py"),
         ]
+
+    def get_plugin_type(self) -> str:
+        return "storage"

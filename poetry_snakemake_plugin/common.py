@@ -4,21 +4,23 @@ from typing import List
 from cleo.commands.command import Command
 import subprocess as sp
 from jinja2 import Environment, PackageLoader, select_autoescape
-import tomli
+import toml
 
 
 class ScaffoldSnakemakePluginCommandBase(Command, ABC):
     @abstractmethod
-    def get_dependencies(self) -> List[str]:
-        ...
-
-    @abstractmethod
-    def get_package_name_prefix(self) -> str:
-        ...
-
-    @abstractmethod
     def get_templates(self) -> List[str]:
         ...
+
+    @abstractmethod
+    def get_plugin_type(self) -> str:
+        ...
+
+    def get_dependencies(self) -> List[str]:
+        return [f"snakemake-interface-{self.get_plugin_type()}-plugins"]
+
+    def get_package_name_prefix(self) -> str:
+        return f"snakemake-{self.get_plugin_type()}-plugin-"
 
     def handle(self) -> int:
         # add dependencies
@@ -46,8 +48,8 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
             keep_trailing_newline=True,
         )
 
-        with open("pyproject.toml", "rb") as f:
-            pyproject = tomli.load(f)
+        with open("pyproject.toml", "r") as f:
+            pyproject = toml.load(f)
 
         package_name = pyproject["tool"]["poetry"]["name"]
         if not package_name.startswith(self.get_package_name_prefix()):
@@ -57,6 +59,15 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
             )
 
         plugin_name = package_name.replace(self.get_package_name_prefix(), "")
+
+        pyproject["tool"]["poetry"]["repository"] = "https://github.com/your/plugin"
+        pyproject["tool"]["poetry"]["documentation"] = (
+            "https://snakemake.github.io/snakemake-plugin-catalog/plugins/"
+            f"{self.get_plugin_type()}/{plugin_name}.html"
+        )
+
+        with open("pyproject.toml", "w") as f:
+            toml.dump(pyproject, f)
 
         def render_template(name, dest: Path):
             dest.parent.mkdir(exist_ok=True, parents=True)
