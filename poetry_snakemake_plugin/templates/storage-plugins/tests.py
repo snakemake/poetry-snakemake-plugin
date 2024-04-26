@@ -9,6 +9,8 @@ class TestStorage(TestStorageBase):
     retrieve_only = False  # set to True if the storage is read-only
     store_only = False  # set to True if the storage is write-only
     delete = True  # set to False if the storage does not support deletion
+    touch = False  # set to True if the storage object implements support for touching (inherits from StorageObjectTouch)
+    files_only = True  # set to False if also directory upload/download should be tested (if your plugin supports directory down-/upload, definitely do that)
 
     def get_query(self, tmp_path) -> str:
         # Return a query. If retrieve_only is True, this should be a query that
