@@ -6,11 +6,18 @@ from snakemake_interface_storage_plugins.settings import StorageProviderSettings
 
 class TestStorage(TestStorageBase):
     __test__ = True
-    retrieve_only = False  # set to True if the storage is read-only
-    store_only = False  # set to True if the storage is write-only
-    delete = True  # set to False if the storage does not support deletion
-    touch = False  # set to True if the storage object implements support for touching (inherits from StorageObjectTouch)
-    files_only = True  # set to False if also directory upload/download should be tested (if your plugin supports directory down-/upload, definitely do that)
+    # set to True if the storage is read-only
+    retrieve_only = False
+    # set to True if the storage is write-only
+    store_only = False
+    # set to False if the storage does not support deletion
+    delete = True
+    # set to True if the storage object implements support for touching (inherits from
+    # StorageObjectTouch)
+    touch = False
+    # set to False if also directory upload/download should be tested (if your plugin
+    # supports directory down-/upload, definitely do that)
+    files_only = True
 
     def get_query(self, tmp_path) -> str:
         # Return a query. If retrieve_only is True, this should be a query that
