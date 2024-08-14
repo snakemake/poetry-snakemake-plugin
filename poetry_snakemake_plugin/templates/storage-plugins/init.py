@@ -50,6 +50,7 @@ class StorageProviderSettings(StorageProviderSettingsBase):
             "unparse_func": ...,
             # Optionally specify that setting is required when the executor is in use.
             "required": True,
+            # Optionally specify multiple args with "nargs": "+"
         },
     )
 
