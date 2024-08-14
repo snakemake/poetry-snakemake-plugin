@@ -34,6 +34,7 @@ class ReportSettings(ReportSettingsBase):
             "unparse_func": ...,
             # Optionally specify that setting is required when the reporter is in use.
             "required": True,
+            # Optionally specify multiple args with "nargs": "+"
         },
     )
 
