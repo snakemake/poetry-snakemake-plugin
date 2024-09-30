@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.4.0...v0.4.1) (2024-09-30)
+
+
+### Bug Fixes
+
+* nargs ([0f42900](https://github.com/snakemake/poetry-snakemake-plugin/commit/0f4290036b5c40c4956f17f0b96d258f60a942ad))
+
 ## [0.4.0](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.3.4...v0.4.0) (2024-02-16)
 
 
