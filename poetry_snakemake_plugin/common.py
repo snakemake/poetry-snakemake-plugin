@@ -21,6 +21,29 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
         return f"snakemake-{self.get_plugin_type()}-plugin-"
 
     def handle(self) -> int:
+        with open("pyproject.toml", "r") as f:
+            pyproject = toml.load(f)
+
+        package_name = pyproject["tool"]["poetry"]["name"]
+        if not package_name.startswith(self.get_package_name_prefix()):
+            raise ValueError(
+                f"Package name must start with {self.get_package_name_prefix()} "
+                f"(found {package_name}))"
+            )
+
+        plugin_name = package_name.replace(self.get_package_name_prefix(), "")
+
+        pyproject["tool"]["poetry"]["repository"] = "https://github.com/your/plugin"
+        pyproject["tool"]["poetry"]["documentation"] = (
+            "https://snakemake.github.io/snakemake-plugin-catalog/plugins/"
+            f"{self.get_plugin_type()}/{plugin_name}.html"
+        )
+        # the python dependency should be in line with the dependencies
+        pyproject["tool"]["poetry"]["requires-python"] = "^3.11"
+
+        with open("pyproject.toml", "w") as f:
+            toml.dump(pyproject, f)
+
         # add dependencies
         sp.run(
             ["poetry", "add", "snakemake-interface-common"] + self.get_dependencies()
@@ -45,29 +68,6 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
             autoescape=select_autoescape(),
             keep_trailing_newline=True,
         )
-
-        with open("pyproject.toml", "r") as f:
-            pyproject = toml.load(f)
-
-        package_name = pyproject["tool"]["poetry"]["name"]
-        if not package_name.startswith(self.get_package_name_prefix()):
-            raise ValueError(
-                f"Package name must start with {self.get_package_name_prefix()} "
-                f"(found {package_name}))"
-            )
-
-        plugin_name = package_name.replace(self.get_package_name_prefix(), "")
-
-        pyproject["tool"]["poetry"]["repository"] = "https://github.com/your/plugin"
-        pyproject["tool"]["poetry"]["documentation"] = (
-            "https://snakemake.github.io/snakemake-plugin-catalog/plugins/"
-            f"{self.get_plugin_type()}/{plugin_name}.html"
-        )
-        # the python dependency should be in line with the dependencies
-        pyproject["tool"]["poetry"]["requires-python"] = "^3.11"
-
-        with open("pyproject.toml", "w") as f:
-            toml.dump(pyproject, f)
 
         def render_template(name, dest: Path):
             dest.parent.mkdir(exist_ok=True, parents=True)
