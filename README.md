@@ -74,3 +74,27 @@ poetry scaffold-snakemake-report-plugin
 # creates github actions workflows that will immediately start to check and test
 # the plugin.
 ```
+
+## Scaffold a software deployment plugin
+
+Lets assume that you want to create a snakemake software deployment plugin with the name `snakemake-deployment-plugin-myfancydeployment`.
+
+```bash
+
+# Install poetry plugin via
+poetry self add poetry-snakemake-plugin
+
+# Create a new poetry project via
+poetry new snakemake-deployment-plugin-myfancydeployment
+
+cd snakemake-deployment-plugin-myfancydeployment
+
+# Scaffold the project as a snakemake deployment plugin
+poetry scaffold-snakemake-deployment-plugin
+
+# Next, edit the scaffolded code according to your needs, and publish
+# the resulting plugin into a github repository. The scaffold command also 
+# creates github actions workflows that will immediately start to check and test
+# the plugin.
+```
+
