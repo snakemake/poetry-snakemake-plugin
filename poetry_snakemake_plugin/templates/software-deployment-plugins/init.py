@@ -68,7 +68,8 @@ class SoftwareDeploymentProvider(SoftwareDeploymentProviderBase):
         # if not needed.
 
         # Example code:
-        # Here we run conda info to get information about the current conda installation.
+        # Here we run conda info to get information about the current conda
+        # installation.
         # Important: We use the inherited method self.run() to run the command.
         # This is mandatory since providers can be stacked by the user, such that
         # e.g. this provider is supposed to be used from within a particular environment
