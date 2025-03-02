@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.5.0...v0.6.0) (2025-03-02)
+
+
+### Miscellaneous Chores
+
+* Release 0.6.0 ([06a01c7](https://github.com/snakemake/poetry-snakemake-plugin/commit/06a01c79665873dafc885616bb63538a1a223de3))
+
 ## [0.5.0](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.4.0...v0.5.0) (2025-03-02)
 
 
