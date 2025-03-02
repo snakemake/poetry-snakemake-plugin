@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.5.0](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.4.0...v0.5.0) (2025-03-02)
+
+
+### Features
+
+* support for software deployment plugins ([#22](https://github.com/snakemake/poetry-snakemake-plugin/issues/22)) ([32508f6](https://github.com/snakemake/poetry-snakemake-plugin/commit/32508f67b70888f0e4c408297cb3578cf2437d47))
+
+
+### Bug Fixes
+
+* extend tests template for storage plugins ([#20](https://github.com/snakemake/poetry-snakemake-plugin/issues/20)) ([90e22b1](https://github.com/snakemake/poetry-snakemake-plugin/commit/90e22b174553e651dcd5a3fe3cab55179df87d03))
+* nargs ([0f42900](https://github.com/snakemake/poetry-snakemake-plugin/commit/0f4290036b5c40c4956f17f0b96d258f60a942ad))
+
 ## [0.4.0](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.3.4...v0.4.0) (2024-02-16)
 
 
