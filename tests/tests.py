@@ -11,16 +11,16 @@ PLUGIN_TYPES = [
 ]
 
 
-@pytest.mark.parameterize("plugin_type", PLUGIN_TYPES)
-def test_new_plugin(plugin_type, tmp_path):
+@pytest.mark.parametrize("plugin_type", PLUGIN_TYPES)
+def test_scaffold_plugin(plugin_type, tmp_path):
     orig_dir = os.getcwd()
     os.chdir(tmp_path)
 
     plugin_type = f"{plugin_type}-plugin"
 
     run_subcommand("new", f"snakemake-{plugin_type}-test")
-    os.chdir("snakemake-{plugin_type}-test")
-    run_subcommand("scaffold-snakemake-{plugin_type}")
+    os.chdir(f"snakemake-{plugin_type}-test")
+    run_subcommand(f"scaffold-snakemake-{plugin_type}")
 
     run_subcommand("run", "black", "--check", "--diff", ".")
     run_subcommand("run", "flake8")
