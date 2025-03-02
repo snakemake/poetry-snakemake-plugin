@@ -7,6 +7,9 @@ from poetry_snakemake_plugin.report_plugins import ScaffoldSnakemakeReportPlugin
 from poetry_snakemake_plugin.storage_plugins import (
     ScaffoldSnakemakeStoragePluginCommand,
 )
+from poetry_snakemake_plugin.software_deployment_plugins import (
+    ScaffoldSnakemakeSoftwareDeploymentPluginCommand,
+)
 
 
 class ScaffoldSnakemakeExecutorPlugin(ApplicationPlugin):
@@ -22,4 +25,8 @@ class ScaffoldSnakemakeExecutorPlugin(ApplicationPlugin):
         application.command_loader.register_factory(
             ScaffoldSnakemakeReportPluginCommand.name,
             ScaffoldSnakemakeReportPluginCommand,
+        )
+        application.command_loader.register_factory(
+            ScaffoldSnakemakeSoftwareDeploymentPluginCommand.name,
+            ScaffoldSnakemakeSoftwareDeploymentPluginCommand,
         )
