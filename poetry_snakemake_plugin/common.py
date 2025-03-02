@@ -63,6 +63,8 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
             "https://snakemake.github.io/snakemake-plugin-catalog/plugins/"
             f"{self.get_plugin_type()}/{plugin_name}.html"
         )
+        # the python dependency should be in line with the dependencies
+        pyproject["tool"]["poetry"]["requires-python"] = "^3.11"
 
         with open("pyproject.toml", "w") as f:
             toml.dump(pyproject, f)
