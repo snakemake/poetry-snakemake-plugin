@@ -1,7 +1,6 @@
 from dataclasses import dataclass, field
 import json
-from typing import Any, Iterable, Optional, List
-import subprocess as sp
+from typing import Optional
 from snakemake_interface_software_deployment_plugins.settings import (
     SoftwareDeploymentProviderSettingsBase,
 )
@@ -10,6 +9,7 @@ from snakemake_interface_software_deployment_plugins import (
     EnvBase,
     DeployableEnvBase,
     ArchiveableEnvBase,
+    EnvSpecBase,
 )
 
 
@@ -77,10 +77,19 @@ class SoftwareDeploymentProvider(SoftwareDeploymentProviderBase):
         self.conda_info = json.loads(self.run("conda info --json").decode())
 
 
+class EnvSpec(EnvSpecBase):
+    # This class should implement something that describes an existing or to be created
+    # environment.
+    # It will be automatically added to the environment object when the environment is
+    # created or loaded and is available there as attribute self.spec.
+    pass
+
+
 # Required:
 # Implementation of an environment object.
 # If your environment cannot be archived or deployed, remove the respective methods
 # and the respective base classes.
+# All errors should be wrapped with snakemake-interface-common.errors.WorkflowError
 class Env(EnvBase, DeployableEnvBase, ArchiveableEnvBase):
     # For compatibility with future changes, you should not overwrite the __init__
     # method. Instead, use __post_init__ to set additional attributes and initialize
@@ -95,26 +104,28 @@ class Env(EnvBase, DeployableEnvBase, ArchiveableEnvBase):
         # Decorate given shell command such that it runs within the environment.
         ...
 
-    def hash(self, hash_object) -> None:
+    def record_hash(self, hash_object) -> None:
         # Update given hash such that it changes whenever the environment
         # could potentially contain a different set of software (in terms of versions or
-        # packages).
+        # packages). Use self.spec (containing the corresponding EnvSpec object)
+        # to determine the hash.
         ...
 
     # The methods below are optional. Remove them if not needed and adjust the
     # base classes above.
 
     def deploy(self) -> None:
-        # Remove if not deployable!
-        # Deploy the environment to self.provider.deployment_path.
+        # Remove method if not deployable!
+        # Deploy the environment to self.deployment_path, using self.spec
+        # (the EnvSpec object).
 
         # When issuing shell commands, the environment should use
         # self.provider.run(cmd: str) -> bytes in order to ensure that it runs within
         # eventual parent environments (e.g. a container or an env module).
         ...
 
-    def deployment_hash(self, hash_object) -> None:
-        # Remove if not deployable!
+    def record_deployment_hash(self, hash_object) -> None:
+        # Remove method if not deployable!
         # Update given hash such that it changes whenever the environment
         # needs to be redeployed, e.g. because its content has changed or the
         # deployment location has changed. The latter is only relevant if the
@@ -122,8 +133,14 @@ class Env(EnvBase, DeployableEnvBase, ArchiveableEnvBase):
         # the RPATH in binaries).
         ...
 
+    def remove(self) -> None:
+        # Remove method if not deployable!
+        # Remove the deployed environment from self.deployment_path and perform
+        # any additional cleanup.
+        ...
+
     def archive(self) -> None:
-        # Remove if not archiveable!
+        # Remove method if not archiveable!
         # Archive the environment to self.provider.archive_path.
 
         # When issuing shell commands, the environment should use
