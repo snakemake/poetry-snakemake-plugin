@@ -24,22 +24,23 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
         with open("pyproject.toml", "r") as f:
             pyproject = toml.load(f)
 
-        package_name = pyproject["tool"]["poetry"]["name"]
+        package_name = pyproject["project"]["name"]
+
         if not package_name.startswith(self.get_package_name_prefix()):
             raise ValueError(
                 f"Package name must start with {self.get_package_name_prefix()} "
-                f"(found {package_name}))"
+                f"(found {package_name})"
             )
 
         plugin_name = package_name.replace(self.get_package_name_prefix(), "")
 
-        pyproject["tool"]["poetry"]["repository"] = "https://github.com/your/plugin"
-        pyproject["tool"]["poetry"]["documentation"] = (
+        pyproject["project"]["repository"] = "https://github.com/your/plugin"
+        pyproject["project"]["documentation"] = (
             "https://snakemake.github.io/snakemake-plugin-catalog/plugins/"
             f"{self.get_plugin_type()}/{plugin_name}.html"
         )
         # the python dependency should be in line with the dependencies
-        pyproject["tool"]["poetry"]["requires-python"] = "^3.11"
+        pyproject["project"]["requires-python"] = "^3.11"
 
         with open("pyproject.toml", "w") as f:
             toml.dump(pyproject, f)
@@ -78,7 +79,7 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
                     )
                 )
 
-        module_path = Path(pyproject["tool"]["poetry"]["name"].replace("-", "_"))
+        module_path = Path(pyproject["project"]["name"].replace("-", "_"))
         tests_path = Path("tests")
         workflows_path = Path(".github/workflows")
 
