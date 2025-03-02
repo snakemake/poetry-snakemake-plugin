@@ -4,7 +4,9 @@ from typing import List
 from poetry_snakemake_plugin.common import ScaffoldSnakemakePluginCommandBase
 
 
-class ScaffoldSnakemakeSoftwareDeploymentPluginCommand(ScaffoldSnakemakePluginCommandBase):
+class ScaffoldSnakemakeSoftwareDeploymentPluginCommand(
+    ScaffoldSnakemakePluginCommandBase
+):
     name = "scaffold-snakemake-software-deployment-plugin"
     description = (
         "Scaffolds a snakemake software deployment plugin by adding recommended "
