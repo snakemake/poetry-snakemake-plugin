@@ -40,7 +40,7 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
             f"{self.get_plugin_type()}/{plugin_name}.html"
         )
         # the python dependency should be in line with the dependencies
-        pyproject["project"]["requires-python"] = "^3.11"
+        pyproject["project"]["requires-python"] = ">=3.11,<4.0"
 
         with open("pyproject.toml", "w") as f:
             toml.dump(pyproject, f)
@@ -55,8 +55,7 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
                 "add",
                 "--group",
                 "dev",
-                "black",
-                "flake8",
+                "ruff",
                 "coverage",
                 "pytest",
                 "snakemake",

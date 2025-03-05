@@ -22,8 +22,8 @@ def test_scaffold_plugin(plugin_type, tmp_path):
     os.chdir(f"snakemake-{plugin_type}-test")
     run_subcommand(f"scaffold-snakemake-{plugin_type}")
 
-    run_subcommand("run", "black", "--check", "--diff", ".")
-    run_subcommand("run", "flake8")
+    run_subcommand("run", "ruff", "format", "--check", "--diff", ".")
+    run_subcommand("run", "ruff", "check", ".")
     os.chdir(orig_dir)
 
 
