@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.6.1...v0.7.0) (2025-03-05)
+
+
+### Features
+
+* use ruff for formatting and linting ([#28](https://github.com/snakemake/poetry-snakemake-plugin/issues/28)) ([08885d2](https://github.com/snakemake/poetry-snakemake-plugin/commit/08885d21c360cc07fb694c7c715c30b07e1331e1))
+
 ## [0.6.1](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.6.0...v0.6.1) (2025-03-05)
 
 
