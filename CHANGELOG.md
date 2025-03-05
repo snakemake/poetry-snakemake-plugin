@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.6.0...v0.6.1) (2025-03-05)
+
+
+### Bug Fixes
+
+* adapt template structure to poetry 2 ([#26](https://github.com/snakemake/poetry-snakemake-plugin/issues/26)) ([29c9512](https://github.com/snakemake/poetry-snakemake-plugin/commit/29c95124bdd682d0842c005e5f37af1f535228f3))
+
 ## [0.6.0](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.5.0...v0.6.0) (2025-03-02)
 
 
