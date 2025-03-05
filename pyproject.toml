@@ -14,9 +14,8 @@ toml = "^0.10.2"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.1"
-black = "^25.1.0"
-flake8 = "^6.1.0"
 coverage = "^7.3.0"
+ruff = "^0.9.9"
 
 [tool.coverage.report]
 fail_under = 100
