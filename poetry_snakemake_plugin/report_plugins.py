@@ -14,7 +14,7 @@ class ScaffoldSnakemakeReportPluginCommand(ScaffoldSnakemakePluginCommandBase):
     def get_templates(self, module_path: Path, tests_path: Path) -> List[str]:
         return [
             ("report-plugins/init.py", module_path / "__init__.py"),
-            ("report-plugins/tests.py", tests_path / "tests.py"),
+            ("report-plugins/tests.py", tests_path / "test_plugin.py"),
         ]
 
     def get_plugin_type(self) -> str:

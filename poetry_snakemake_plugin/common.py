@@ -9,7 +9,7 @@ import toml
 
 class ScaffoldSnakemakePluginCommandBase(Command, ABC):
     @abstractmethod
-    def get_templates(self) -> List[str]: ...
+    def get_templates(self, module_path: Path, tests_path: Path) -> List[str]: ...
 
     @abstractmethod
     def get_plugin_type(self) -> str: ...
@@ -79,7 +79,7 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
                     )
                 )
 
-        module_path = Path(pyproject["project"]["name"].replace("-", "_"))
+        module_path = Path("src") / pyproject["project"]["name"].replace("-", "_")
         tests_path = Path("tests")
         workflows_path = Path(".github/workflows")
 
