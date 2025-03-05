@@ -14,7 +14,7 @@ class ScaffoldSnakemakeStoragePluginCommand(ScaffoldSnakemakePluginCommandBase):
     def get_templates(self, module_path: Path, tests_path: Path) -> List[str]:
         return [
             ("storage-plugins/init.py", module_path / "__init__.py"),
-            ("storage-plugins/tests.py", tests_path / "tests.py"),
+            ("storage-plugins/tests.py", tests_path / "test_plugin.py"),
         ]
 
     def get_plugin_type(self) -> str:
