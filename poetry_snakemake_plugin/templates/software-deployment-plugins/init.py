@@ -49,13 +49,13 @@ class SoftwareDeploymentProviderSettings(SoftwareDeploymentProviderSettingsBase)
     )
 
 
-@dataclass
 class EnvSpec(EnvSpecBase):
     # This class should implement something that describes an existing or to be created
     # environment.
     # It will be automatically added to the environment object when the environment is
     # created or loaded and is available there as attribute self.spec.
-    # Use dataclass attributes to define the spec.
+    # Use either __init__ with type annotations or dataclass attributes to define the
+    # spec.
     pass
 
 
