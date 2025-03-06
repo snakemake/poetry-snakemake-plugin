@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import Iterable, Optional
 from snakemake_interface_software_deployment_plugins.settings import (
     SoftwareDeploymentProviderSettingsBase,
 )
@@ -56,7 +56,12 @@ class EnvSpec(EnvSpecBase):
     # created or loaded and is available there as attribute self.spec.
     # Use either __init__ with type annotations or dataclass attributes to define the
     # spec.
-    pass
+    def identity_attributes(self) -> Iterable[str]:
+        # Yield the attributes of this subclass that uniquely identify the
+        # environment spec. These are used for hashing and equality comparison.
+        # For example, the name of the env or the path to the environment definition
+        # file or the URI of the container, whatever this plugin uses.
+        ...
 
 
 # Required:
