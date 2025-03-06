@@ -76,7 +76,7 @@ class Env(EnvBase, DeployableEnvBase, ArchiveableEnvBase):
 
     # The decorator ensures that the decorated method is only called once
     # in case multiple environments of the same kind are created.
-    @EnvBase.once 
+    @EnvBase.once
     def check(self) -> None:
         # Check e.g. whether the required software is available (e.g. a container
         # runtime or a module command).
