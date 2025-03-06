@@ -17,6 +17,9 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
     def get_dependencies(self) -> List[str]:
         return [f"snakemake-interface-{self.get_plugin_type()}-plugins"]
 
+    @abstractmethod
+    def include_snakemake_dev_dependency(self) -> bool: ...
+
     def get_package_name_prefix(self) -> str:
         return f"snakemake-{self.get_plugin_type()}-plugin-"
 
@@ -49,18 +52,18 @@ class ScaffoldSnakemakePluginCommandBase(Command, ABC):
         sp.run(
             ["poetry", "add", "snakemake-interface-common"] + self.get_dependencies()
         )
-        sp.run(
-            [
-                "poetry",
-                "add",
-                "--group",
-                "dev",
-                "ruff",
-                "coverage",
-                "pytest",
-                "snakemake",
-            ]
-        )
+        dev_deps = [
+            "poetry",
+            "add",
+            "--group",
+            "dev",
+            "ruff",
+            "coverage",
+            "pytest",
+        ]
+        if self.include_snakemake_dev_dependency():
+            dev_deps.append("snakemake")
+        sp.run(dev_deps)
 
         # add skeleton code
         templates = Environment(

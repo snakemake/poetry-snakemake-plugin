@@ -21,3 +21,6 @@ class ScaffoldSnakemakeSoftwareDeploymentPluginCommand(
 
     def get_plugin_type(self) -> str:
         return "software-deployment"
+
+    def include_snakemake_dev_dependency(self) -> bool:
+        return False

@@ -19,3 +19,6 @@ class ScaffoldSnakemakeStoragePluginCommand(ScaffoldSnakemakePluginCommandBase):
 
     def get_plugin_type(self) -> str:
         return "storage"
+
+    def include_snakemake_dev_dependency(self) -> bool:
+        return False
