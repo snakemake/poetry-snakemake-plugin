@@ -19,3 +19,6 @@ class ScaffoldSnakemakeExecutorPluginCommand(ScaffoldSnakemakePluginCommandBase)
 
     def get_plugin_type(self) -> str:
         return "executor"
+
+    def include_snakemake_dev_dependency(self) -> bool:
+        return True
