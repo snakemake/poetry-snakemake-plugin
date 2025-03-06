@@ -1,11 +1,9 @@
 from dataclasses import dataclass, field
-import json
 from typing import Optional
 from snakemake_interface_software_deployment_plugins.settings import (
     SoftwareDeploymentProviderSettingsBase,
 )
 from snakemake_interface_software_deployment_plugins import (
-    SoftwareDeploymentProviderBase,
     EnvBase,
     DeployableEnvBase,
     ArchiveableEnvBase,
@@ -51,38 +49,13 @@ class SoftwareDeploymentProviderSettings(SoftwareDeploymentProviderSettingsBase)
     )
 
 
-# Required:
-# Implementation of your software deployment provider
-# This class can be empty as the one below.
-# You can however use it to store global information or check for certain tools
-# to be available.
-class SoftwareDeploymentProvider(SoftwareDeploymentProviderBase):
-    # For compatibility with future changes, you should not overwrite the __init__
-    # method. Instead, use __post_init__ to set additional attributes and initialize
-    # futher stuff.
-
-    def __post_init__(self):
-        # You can e.g. use this method to store global information or check for
-        # certain tools to be available.
-        # Overwrite the example code below with your own or remove the entire method
-        # if not needed.
-
-        # Example code:
-        # Here we run conda info to get information about the current conda
-        # installation.
-        # Important: We use the inherited method self.run() to run the command.
-        # This is mandatory since providers can be stacked by the user, such that
-        # e.g. this provider is supposed to be used from within a particular environment
-        # like a container or an environment module.
-        # The self.run() method takes care of that automatically.
-        self.conda_info = json.loads(self.run("conda info --json").decode())
-
-
+@dataclass
 class EnvSpec(EnvSpecBase):
     # This class should implement something that describes an existing or to be created
     # environment.
     # It will be automatically added to the environment object when the environment is
     # created or loaded and is available there as attribute self.spec.
+    # Use dataclass attributes to define the spec.
     pass
 
 
@@ -99,7 +72,15 @@ class Env(EnvBase, DeployableEnvBase, ArchiveableEnvBase):
     def __post_init__(self) -> None:
         # This is optional and can be removed if not needed.
         # Alternatively, you can e.g. prepare anything or set additional attributes.
-        pass
+        self.check()
+
+    # The decorator ensures that the decorated method is only called once
+    # in case multiple environments of the same kind are created.
+    @EnvBase.once 
+    def check(self) -> None:
+        # Check e.g. whether the required software is available (e.g. a container
+        # runtime or a module command).
+        ...
 
     def decorate_shellcmd(self, cmd: str) -> str:
         # Decorate given shell command such that it runs within the environment.
