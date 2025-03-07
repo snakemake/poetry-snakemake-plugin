@@ -1,15 +1,14 @@
 from dataclasses import dataclass, field
-import json
-from typing import Optional
+from typing import Iterable, List, Optional
 from snakemake_interface_software_deployment_plugins.settings import (
     SoftwareDeploymentProviderSettingsBase,
 )
 from snakemake_interface_software_deployment_plugins import (
-    SoftwareDeploymentProviderBase,
     EnvBase,
     DeployableEnvBase,
     ArchiveableEnvBase,
     EnvSpecBase,
+    SoftwareReport,
 )
 
 
@@ -51,39 +50,26 @@ class SoftwareDeploymentProviderSettings(SoftwareDeploymentProviderSettingsBase)
     )
 
 
-# Required:
-# Implementation of your software deployment provider
-# This class can be empty as the one below.
-# You can however use it to store global information or check for certain tools
-# to be available.
-class SoftwareDeploymentProvider(SoftwareDeploymentProviderBase):
-    # For compatibility with future changes, you should not overwrite the __init__
-    # method. Instead, use __post_init__ to set additional attributes and initialize
-    # futher stuff.
-
-    def __post_init__(self):
-        # You can e.g. use this method to store global information or check for
-        # certain tools to be available.
-        # Overwrite the example code below with your own or remove the entire method
-        # if not needed.
-
-        # Example code:
-        # Here we run conda info to get information about the current conda
-        # installation.
-        # Important: We use the inherited method self.run() to run the command.
-        # This is mandatory since providers can be stacked by the user, such that
-        # e.g. this provider is supposed to be used from within a particular environment
-        # like a container or an environment module.
-        # The self.run() method takes care of that automatically.
-        self.conda_info = json.loads(self.run("conda info --json").decode())
-
-
 class EnvSpec(EnvSpecBase):
     # This class should implement something that describes an existing or to be created
     # environment.
     # It will be automatically added to the environment object when the environment is
     # created or loaded and is available there as attribute self.spec.
-    pass
+    # Use either __init__ with type annotations or dataclass attributes to define the
+    # spec.
+    def identity_attributes(self) -> Iterable[str]:
+        # Yield the attributes of this subclass that uniquely identify the
+        # environment spec. These are used for hashing and equality comparison.
+        # For example, the name of the env or the path to the environment definition
+        # file or the URI of the container, whatever this plugin uses.
+        ...
+
+    def source_path_attributes(self) -> Iterable[str]:
+        # Return iterable of attributes of the subclass that represent paths that are
+        # supposed to be interpreted as being relative to the defining rule.
+        # For example, this would be attributes pointing to conda environment files.
+        # Return empty list if no such attributes exist.
+        ...
 
 
 # Required:
@@ -99,7 +85,15 @@ class Env(EnvBase, DeployableEnvBase, ArchiveableEnvBase):
     def __post_init__(self) -> None:
         # This is optional and can be removed if not needed.
         # Alternatively, you can e.g. prepare anything or set additional attributes.
-        pass
+        self.check()
+
+    # The decorator ensures that the decorated method is only called once
+    # in case multiple environments of the same kind are created.
+    @EnvBase.once
+    def check(self) -> None:
+        # Check e.g. whether the required software is available (e.g. a container
+        # runtime or a module command).
+        ...
 
     def decorate_shellcmd(self, cmd: str) -> str:
         # Decorate given shell command such that it runs within the environment.
@@ -110,6 +104,16 @@ class Env(EnvBase, DeployableEnvBase, ArchiveableEnvBase):
         # could potentially contain a different set of software (in terms of versions or
         # packages). Use self.spec (containing the corresponding EnvSpec object)
         # to determine the hash.
+        hash_object.update(...)
+
+    def report_software(self) -> List[SoftwareReport]:
+        # Report the software contained in the environment. This should be a list of
+        # snakemake_interface_software_deployment_plugins.SoftwareReport data class.
+        # Use SoftwareReport.is_secondary = True if the software is just some
+        # less important technical dependency. This allows Snakemake's report to
+        # hide those for clarity. In case of containers, it is also valid to
+        # return the container URI as a "software".
+        # Return an empty list if no software can be reported.
         ...
 
     # The methods below are optional. Remove them if not needed and adjust the
