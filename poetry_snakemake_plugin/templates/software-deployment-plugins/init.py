@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Iterable, Optional
+from typing import Iterable, List, Optional
 from snakemake_interface_software_deployment_plugins.settings import (
     SoftwareDeploymentProviderSettingsBase,
 )
@@ -8,6 +8,7 @@ from snakemake_interface_software_deployment_plugins import (
     DeployableEnvBase,
     ArchiveableEnvBase,
     EnvSpecBase,
+    SoftwareReport,
 )
 
 
@@ -63,6 +64,13 @@ class EnvSpec(EnvSpecBase):
         # file or the URI of the container, whatever this plugin uses.
         ...
 
+    def source_path_attributes(self) -> Iterable[str]:
+        # Return iterable of attributes of the subclass that represent paths that are
+        # supposed to be interpreted as being relative to the defining rule.
+        # For example, this would be attributes pointing to conda environment files.
+        # Return empty list if no such attributes exist.
+        ...
+
 
 # Required:
 # Implementation of an environment object.
@@ -96,6 +104,16 @@ class Env(EnvBase, DeployableEnvBase, ArchiveableEnvBase):
         # could potentially contain a different set of software (in terms of versions or
         # packages). Use self.spec (containing the corresponding EnvSpec object)
         # to determine the hash.
+        hash_object.update(...)
+
+    def report_software(self) -> List[SoftwareReport]:
+        # Report the software contained in the environment. This should be a list of
+        # snakemake_interface_software_deployment_plugins.SoftwareReport data class.
+        # Use SoftwareReport.is_secondary = True if the software is just some
+        # less important technical dependency. This allows Snakemake's report to
+        # hide those for clarity. In case of containers, it is also valid to
+        # return the container URI as a "software".
+        # Return an empty list if no software can be reported.
         ...
 
     # The methods below are optional. Remove them if not needed and adjust the
