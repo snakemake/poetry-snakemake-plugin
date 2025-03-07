@@ -63,23 +63,24 @@ class EnvSpec(EnvSpecBase):
     # spec.
     # Any attributes that shall hold paths that are interpreted as relative to the
     # workflow source (e.g. the path to an environment definition file), have to be
-    # accepted as Union[Path, str] and should be wrapped in EnvSpecSourcePath within
-    # the __init__ method.
+    # defined as snakemake_interface_software_deployment_plugins.EnvSpecSourceFile.
     # The reason is that Snakemake internally has to convert them from potential
     # URLs or filesystem paths to cached versions.
-    # In the Env class below, they have to be accessed as EnvSpecSourcePath.cached
+    # In the Env class below, they have to be accessed as EnvSpecSourceFile.cached
     # (of type Path), when checking for existence. In case errors shall be thrown,
-    # the attribute EnvSpecSourcePath.path_or_uri (of type str) can be used to show
+    # the attribute EnvSpecSourceFile.path_or_uri (of type str) can be used to show
     # the original value passed to the EnvSpec.
 
-    def identity_attributes(self) -> Iterable[str]:
+    @classmethod
+    def identity_attributes(cls) -> Iterable[str]:
         # Yield the attributes of this subclass that uniquely identify the
         # environment spec. These are used for hashing and equality comparison.
         # For example, the name of the env or the path to the environment definition
         # file or the URI of the container, whatever this plugin uses.
         ...
 
-    def source_path_attributes(self) -> Iterable[str]:
+    @classmethod
+    def source_path_attributes(cls) -> Iterable[str]:
         # Return iterable of attributes of the subclass that represent paths that are
         # supposed to be interpreted as being relative to the defining rule.
         # For example, this would be attributes pointing to conda environment files.
