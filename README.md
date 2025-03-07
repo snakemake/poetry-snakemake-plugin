@@ -85,12 +85,12 @@ Lets assume that you want to create a snakemake software deployment plugin with 
 poetry self add poetry-snakemake-plugin
 
 # Create a new poetry project via
-poetry new snakemake-deployment-plugin-myfancydeployment
+poetry new snakemake-software-deployment-plugin-myfancydeployment
 
-cd snakemake-deployment-plugin-myfancydeployment
+cd snakemake-software-deployment-plugin-myfancydeployment
 
-# Scaffold the project as a snakemake deployment plugin
-poetry scaffold-snakemake-deployment-plugin
+# Scaffold the project as a snakemake software deployment plugin
+poetry scaffold-snakemake-software-deployment-plugin
 
 # Next, edit the scaffolded code according to your needs, and publish
 # the resulting plugin into a github repository. The scaffold command also 
