@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Iterable, Optional
 from snakemake_interface_software_deployment_plugins.settings import (
-    SoftwareDeploymentProviderSettingsBase,
+    SoftwareDeploymentSettingsBase,
 )
 from snakemake_interface_software_deployment_plugins import (
     EnvBase,
@@ -27,7 +27,7 @@ from snakemake_interface_common.exceptions import WorkflowError  # noqa: F401
 # This way, a storage plugin can be used multiple times within a workflow with different
 # settings.
 @dataclass
-class SoftwareDeploymentProviderSettings(SoftwareDeploymentProviderSettingsBase):
+class SoftwareDeploymentProviderSettings(SoftwareDeploymentSettingsBase):
     myparam: Optional[int] = field(
         default=None,
         metadata={
