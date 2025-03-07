@@ -61,7 +61,7 @@ class EnvSpec(EnvSpecBase):
     # created or loaded and is available there as attribute self.spec.
     # Use either __init__ with type annotations or dataclass attributes to define the
     # spec.
-    # Any attributes that shall hold paths that are interpreted as relative to the 
+    # Any attributes that shall hold paths that are interpreted as relative to the
     # workflow source (e.g. the path to an environment definition file), have to be
     # accepted as Union[Path, str] and should be wrapped in EnvSpecSourcePath within
     # the __init__ method.
