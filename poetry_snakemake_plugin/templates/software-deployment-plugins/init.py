@@ -123,14 +123,15 @@ class Env(EnvBase, DeployableEnvBase, ArchiveableEnvBase):
     # The methods below are optional. Remove them if not needed and adjust the
     # base classes above.
 
-    async def deploy(self) -> None:
+    def deploy(self) -> None:
         # Remove method if not deployable!
         # Deploy the environment to self.deployment_path, using self.spec
         # (the EnvSpec object).
 
         # When issuing shell commands, the environment should use
-        # self.provider.run(cmd: str) -> bytes in order to ensure that it runs within
-        # eventual parent environments (e.g. a container or an env module).
+        # self.run_cmd(cmd: str) -> subprocess.CompletedProcess in order to ensure that
+        # it runs within eventual parent environments (e.g. a container or an env
+        # module).
         ...
 
     def record_deployment_hash(self, hash_object) -> None:
@@ -153,6 +154,7 @@ class Env(EnvBase, DeployableEnvBase, ArchiveableEnvBase):
         # Archive the environment to self.provider.archive_path.
 
         # When issuing shell commands, the environment should use
-        # self.provider.run(cmd: str) -> bytes in order to ensure that it runs within
-        # eventual parent environments (e.g. a container or an env module).
+        # self.run_cmd(cmd: str) -> subprocess.CompletedProcess in order to ensure that
+        # it runs within eventual parent environments (e.g. a container or an env
+        # module).
         ...
