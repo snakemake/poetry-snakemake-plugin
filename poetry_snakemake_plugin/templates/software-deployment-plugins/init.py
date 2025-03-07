@@ -27,7 +27,7 @@ from snakemake_interface_common.exceptions import WorkflowError  # noqa: F401
 # This way, a storage plugin can be used multiple times within a workflow with different
 # settings.
 @dataclass
-class SoftwareDeploymentProviderSettings(SoftwareDeploymentSettingsBase):
+class SoftwareDeploymentSettings(SoftwareDeploymentSettingsBase):
     myparam: Optional[int] = field(
         default=None,
         metadata={
@@ -61,6 +61,17 @@ class EnvSpec(EnvSpecBase):
     # created or loaded and is available there as attribute self.spec.
     # Use either __init__ with type annotations or dataclass attributes to define the
     # spec.
+    # Any attributes that shall hold paths that are interpreted as relative to the 
+    # workflow source (e.g. the path to an environment definition file), have to be
+    # accepted as Union[Path, str] and should be wrapped in EnvSpecSourcePath within
+    # the __init__ method.
+    # The reason is that Snakemake internally has to convert them from potential
+    # URLs or filesystem paths to cached versions.
+    # In the Env class below, they have to be accessed as EnvSpecSourcePath.cached
+    # (of type Path), when checking for existence. In case errors shall be thrown,
+    # the attribute EnvSpecSourcePath.path_or_uri (of type str) can be used to show
+    # the original value passed to the EnvSpec.
+
     def identity_attributes(self) -> Iterable[str]:
         # Yield the attributes of this subclass that uniquely identify the
         # environment spec. These are used for hashing and equality comparison.
