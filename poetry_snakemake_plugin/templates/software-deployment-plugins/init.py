@@ -123,7 +123,7 @@ class Env(EnvBase, DeployableEnvBase, ArchiveableEnvBase):
     # The methods below are optional. Remove them if not needed and adjust the
     # base classes above.
 
-    def deploy(self) -> None:
+    async def deploy(self) -> None:
         # Remove method if not deployable!
         # Deploy the environment to self.deployment_path, using self.spec
         # (the EnvSpec object).
@@ -148,7 +148,7 @@ class Env(EnvBase, DeployableEnvBase, ArchiveableEnvBase):
         # any additional cleanup.
         ...
 
-    def archive(self) -> None:
+    async def archive(self) -> None:
         # Remove method if not archiveable!
         # Archive the environment to self.provider.archive_path.
 
