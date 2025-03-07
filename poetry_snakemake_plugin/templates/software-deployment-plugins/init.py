@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Iterable, List, Optional
+from typing import Iterable, Optional
 from snakemake_interface_software_deployment_plugins.settings import (
     SoftwareDeploymentProviderSettingsBase,
 )
