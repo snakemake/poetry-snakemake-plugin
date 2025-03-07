@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.1](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.7.0...v0.7.1) (2025-03-07)
+
+
+### Bug Fixes
+
+* adapt to improvements in snakemake software deployment plugin interface ([#32](https://github.com/snakemake/poetry-snakemake-plugin/issues/32)) ([0744e32](https://github.com/snakemake/poetry-snakemake-plugin/commit/0744e32fe297518419d8cb79e6c968aad20dc139))
+* only include snakemake as a dev dependency if that is absolutely necessary ([#30](https://github.com/snakemake/poetry-snakemake-plugin/issues/30)) ([408c6fb](https://github.com/snakemake/poetry-snakemake-plugin/commit/408c6fb2a0e708fc39ee83c040b26ff15bc821ce))
+
 ## [0.7.0](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.6.1...v0.7.0) (2025-03-05)
 
 
