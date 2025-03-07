@@ -13,7 +13,7 @@ Lets assume that you want to create a snakemake executor plugin with the name `s
 ```bash
 
 # Install poetry plugin via
-poetry self add poetry-snakemake-plugin
+poetry self add poetry-snakemake-plugin@latest
 
 # Create a new poetry project via
 poetry new snakemake-executor-plugin-myfancyexecutor
@@ -36,7 +36,7 @@ Lets assume that you want to create a snakemake storage plugin with the name `sn
 ```bash
 
 # Install poetry plugin via
-poetry self add poetry-snakemake-plugin
+poetry self add poetry-snakemake-plugin@latest
 
 # Create a new poetry project via
 poetry new snakemake-storage-plugin-myfancystorage
@@ -59,7 +59,7 @@ Lets assume that you want to create a snakemake report plugin with the name `sna
 ```bash
 
 # Install poetry plugin via
-poetry self add poetry-snakemake-plugin
+poetry self add poetry-snakemake-plugin@latest
 
 # Create a new poetry project via
 poetry new snakemake-report-plugin-myfancyreport
@@ -82,7 +82,7 @@ Lets assume that you want to create a snakemake software deployment plugin with 
 ```bash
 
 # Install poetry plugin via
-poetry self add poetry-snakemake-plugin
+poetry self add poetry-snakemake-plugin@latest
 
 # Create a new poetry project via
 poetry new snakemake-software-deployment-plugin-myfancydeployment
