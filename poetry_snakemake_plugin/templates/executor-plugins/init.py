@@ -9,7 +9,11 @@ from snakemake_interface_executor_plugins.settings import (
 from snakemake_interface_executor_plugins.jobs import (
     JobExecutorInterface,
 )
-from snakemake_interface_common.exceptions import WorkflowError  # noqa
+
+
+# Raise errors that will not be handled within this plugin but thrown upwards to
+# Snakemake and the user as WorkflowError.
+from snakemake_interface_common.exceptions import WorkflowError  # noqa: F401
 
 
 # Optional:

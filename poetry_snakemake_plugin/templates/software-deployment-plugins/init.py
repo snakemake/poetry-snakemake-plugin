@@ -11,6 +11,10 @@ from snakemake_interface_software_deployment_plugins import (
     SoftwareReport,
 )
 
+# Raise errors that will not be handled within this plugin but thrown upwards to
+# Snakemake and the user as WorkflowError.
+from snakemake_interface_common.exceptions import WorkflowError  # noqa: F401
+
 
 # Optional:
 # Define settings for your storage plugin (e.g. host url, credentials).

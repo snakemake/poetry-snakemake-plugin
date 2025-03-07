@@ -17,6 +17,11 @@ from snakemake_interface_storage_plugins.storage_object import (
 from snakemake_interface_storage_plugins.io import IOCacheStorageInterface
 
 
+# Raise errors that will not be handled within this plugin but thrown upwards to
+# Snakemake and the user as WorkflowError.
+from snakemake_interface_common.exceptions import WorkflowError  # noqa: F401
+
+
 # Optional:
 # Define settings for your storage plugin (e.g. host url, credentials).
 # They will occur in the Snakemake CLI as --storage-<storage-plugin-name>-<param-name>
