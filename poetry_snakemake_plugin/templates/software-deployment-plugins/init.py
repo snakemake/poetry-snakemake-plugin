@@ -146,13 +146,13 @@ class Env(EnvBase, DeployableEnvBase, ArchiveableEnvBase):
         # module).
         ...
 
-    def record_deployment_hash(self, hash_object) -> None:
+    def is_deployment_path_portable(self) -> bool:
         # Remove method if not deployable!
-        # Update given hash such that it changes whenever the environment
-        # needs to be redeployed, e.g. because its content has changed or the
-        # deployment location has changed. The latter is only relevant if the
-        # deployment is senstivive to the path (e.g. in case of conda, which patches
-        # the RPATH in binaries).
+        # Return True if the deployment is portable, i.e. can be moved to a
+        # different location without breaking the environment. Return False otherwise.
+        # For example, with conda, environments are not portable in that sense (cannot
+        # be moved around, because deployed packages contain hardcoded absolute 
+        # RPATHs).
         ...
 
     def remove(self) -> None:
