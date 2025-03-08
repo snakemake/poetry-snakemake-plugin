@@ -163,7 +163,7 @@ class Env(EnvBase, DeployableEnvBase, ArchiveableEnvBase):
 
     async def archive(self) -> None:
         # Remove method if not archiveable!
-        # Archive the environment to self.provider.archive_path.
+        # Archive the environment to self.archive_path.
 
         # When issuing shell commands, the environment should use
         # self.run_cmd(cmd: str) -> subprocess.CompletedProcess in order to ensure that
