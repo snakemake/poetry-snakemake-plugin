@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.7.2](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.7.1...v0.7.2) (2025-03-08)
+
+
+### Bug Fixes
+
+* adapt skeleton ([325a836](https://github.com/snakemake/poetry-snakemake-plugin/commit/325a83644ecaadf21baea0018d81d7e4628c0da9))
+* adapt to changes in software deployment interface ([930e7ec](https://github.com/snakemake/poetry-snakemake-plugin/commit/930e7ecd9353f326cccf6a37c1c19f333d805aad))
+* adapt to changes in software deployment interface ([5142d7f](https://github.com/snakemake/poetry-snakemake-plugin/commit/5142d7f1ec4440a7fd2f12eae8d4709f41cb0e72))
+* adapt to changes in software deployment interface ([279bb5d](https://github.com/snakemake/poetry-snakemake-plugin/commit/279bb5d2f9b21174ef59308a3134f983c7220ffc))
+* adapt to changes in software deployment interface ([a548c07](https://github.com/snakemake/poetry-snakemake-plugin/commit/a548c0729e1163b045d2e2139153fadf850ad89e))
+* adapt to interface changes ([2920722](https://github.com/snakemake/poetry-snakemake-plugin/commit/2920722f7b0ff9a4fb7bf6950b1357f566a1abb4))
+* adapt to latest changes in software deployment interface ([66b4706](https://github.com/snakemake/poetry-snakemake-plugin/commit/66b470685de9b888ccab869f3973a0e39dfac9ba))
+* more documentation in software deployment plugin template ([14e0d78](https://github.com/snakemake/poetry-snakemake-plugin/commit/14e0d78181c26f0f256573e85e755f80dbe6e274))
+* provide WorkflowError and instruct on error handling ([c6740c8](https://github.com/snakemake/poetry-snakemake-plugin/commit/c6740c81cc83fb2ba3d374bdc6bc67be48d8554b))
+
+
+### Documentation
+
+* fix plugin naming ([185104f](https://github.com/snakemake/poetry-snakemake-plugin/commit/185104f7d7443497d7f69941efdd2f6cdb8d4f17))
+* update plugin ([e095337](https://github.com/snakemake/poetry-snakemake-plugin/commit/e095337e0aaa51e1660fa51c70f644a5bc2e815f))
+
 ## [0.7.1](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.7.0...v0.7.1) (2025-03-07)
 
 
