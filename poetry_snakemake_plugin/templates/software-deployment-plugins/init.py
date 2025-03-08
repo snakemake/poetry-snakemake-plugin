@@ -151,7 +151,7 @@ class Env(EnvBase, DeployableEnvBase, ArchiveableEnvBase):
         # Return True if the deployment is portable, i.e. can be moved to a
         # different location without breaking the environment. Return False otherwise.
         # For example, with conda, environments are not portable in that sense (cannot
-        # be moved around, because deployed packages contain hardcoded absolute 
+        # be moved around, because deployed packages contain hardcoded absolute
         # RPATHs).
         ...
 
