@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from typing import Iterable, Optional
 from snakemake_interface_software_deployment_plugins.settings import (
     SoftwareDeploymentSettingsBase,
+    CommonSettings,
 )
 from snakemake_interface_software_deployment_plugins import (
     EnvBase,
@@ -52,6 +53,19 @@ class SoftwareDeploymentSettings(SoftwareDeploymentSettingsBase):
             # Optionally specify multiple args with "nargs": "+"
         },
     )
+
+
+common_settings = CommonSettings(
+    # The kind of the software environment provided (e.g. conda, container).
+    # This should not be something describing the tool to provide the software
+    # environment but the resulting environment itself. For example,
+    # it should be "conda" instead of mamba, rattler, pixi etc., or
+    # "container" instead of docker, singularity, podman, or
+    # "envmodules" instead of lmod, environment-modules, etc.
+    # Snakemake will ensure that the user only activates one plugin per provided
+    # kind.
+    provides=...,
+)
 
 
 class EnvSpec(EnvSpecBase):
