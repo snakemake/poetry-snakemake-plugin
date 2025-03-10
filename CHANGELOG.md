@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.3](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.7.2...v0.7.3) (2025-03-10)
+
+
+### Bug Fixes
+
+* add common_settings to software deployment skeleton ([509bd83](https://github.com/snakemake/poetry-snakemake-plugin/commit/509bd834b17403196356c71cb6840f4441d0f55a))
+
 ## [0.7.2](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.7.1...v0.7.2) (2025-03-08)
 
 
