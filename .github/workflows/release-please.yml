@@ -18,6 +18,10 @@ jobs:
         id: release
         with:
           release-type: python
+          # This token only works in the snakemake GitHub organization.
+          # It enables GitHub Actions workflows to run on release-please
+          # generated pull requests.
+          token: ${{ secrets.RELEASE_PLEASE_PR_CI_TOKEN }}
 
   publish:
     runs-on: ubuntu-latest
