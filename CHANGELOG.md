@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.8.0](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.7.2...v0.8.0) (2025-03-14)
+
+
+### Features
+
+* Add postprocess_query and safe_print to the storage scaffold ([#35](https://github.com/snakemake/poetry-snakemake-plugin/issues/35)) ([a9123f6](https://github.com/snakemake/poetry-snakemake-plugin/commit/a9123f6580941e1a5c2a4f9a60644fcd3898c75f))
+
+
+### Bug Fixes
+
+* add common_settings to software deployment skeleton ([509bd83](https://github.com/snakemake/poetry-snakemake-plugin/commit/509bd834b17403196356c71cb6840f4441d0f55a))
+
 ## [0.7.2](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.7.1...v0.7.2) (2025-03-08)
 
 
