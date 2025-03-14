@@ -18,7 +18,6 @@ jobs:
         id: release
         with:
           release-type: python
-          package-name: snakemake-interface-executor-plugins
 
   publish:
     runs-on: ubuntu-latest
