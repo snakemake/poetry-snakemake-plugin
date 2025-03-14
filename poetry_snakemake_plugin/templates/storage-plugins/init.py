@@ -108,6 +108,18 @@ class StorageProvider(StorageProviderBase):
         # object is actually used.
         ...
 
+    # If required, overwrite the method postprocess_query from StorageProviderBase
+    # in order to e.g. normalize the query or add information from the settings to it.
+    # Otherwise, remove this method as it will be inherited from the base class.
+    def postprocess_query(self, query: str) -> str:
+        return query
+
+    # This can be used to change how the rendered query is displayed in the logs to
+    # prevent accidentally printing sensitive information e.g. tokens in a URL.
+    def safe_print(self, query: str) -> str:
+        """Process the query to remove potentially sensitive information when printing."""
+        return query
+
 
 # Required:
 # Implementation of storage object. If certain methods cannot be supported by your
