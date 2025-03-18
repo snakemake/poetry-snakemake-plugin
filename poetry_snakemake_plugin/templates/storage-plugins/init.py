@@ -65,6 +65,9 @@ class StorageProviderSettings(StorageProviderSettingsBase):
 # This class can be empty as the one below.
 # You can however use it to store global information or maintain e.g. a connection
 # pool.
+# Inside of the provider, you can use self.logger (a normal Python logger of type 
+# logging.Logger) to log any additional informations or
+# warnings.
 class StorageProvider(StorageProviderBase):
     # For compatibility with future changes, you should not overwrite the __init__
     # method. Instead, use __post_init__ to set additional attributes and initialize
@@ -114,6 +117,8 @@ class StorageProvider(StorageProviderBase):
 # storage (e.g. because it is read-only see
 # snakemake-storage-http for comparison), remove the corresponding base classes
 # from the list of inherited items.
+# Inside of the object, you can use self.provider to access the provider (e.g. for )
+# self.provider.logger, see above, or self.provider.settings).
 class StorageObject(StorageObjectRead, StorageObjectWrite, StorageObjectGlob):
     # For compatibility with future changes, you should not overwrite the __init__
     # method. Instead, use __post_init__ to set additional attributes and initialize
