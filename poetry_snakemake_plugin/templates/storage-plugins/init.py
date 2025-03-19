@@ -65,7 +65,7 @@ class StorageProviderSettings(StorageProviderSettingsBase):
 # This class can be empty as the one below.
 # You can however use it to store global information or maintain e.g. a connection
 # pool.
-# Inside of the provider, you can use self.logger (a normal Python logger of type 
+# Inside of the provider, you can use self.logger (a normal Python logger of type
 # logging.Logger) to log any additional informations or
 # warnings.
 class StorageProvider(StorageProviderBase):
