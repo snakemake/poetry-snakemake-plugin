@@ -191,6 +191,16 @@ class StorageObject(StorageObjectRead, StorageObjectWrite, StorageObjectGlob):
     @retry_decorator
     def retrieve_object(self):
         # Ensure that the object is accessible locally under self.local_path()
+        # Optionally, this can make use of the attribute self.is_ondemand_eligible,
+        # which indicates that the object could be retrieved on demand,
+        # e.g. by only symlinking or mounting it from whatever network storage this
+        # plugin provides. For example, objects with self.is_ondemand_eligible == True
+        # could mount the object via fuse instead of downloading it.
+        # The job can then transparently access only the parts that matter to it
+        # without having to wait for the full download.
+        # On demand eligibility is calculated via Snakemake's access pattern annotation.
+        # If no access pattern is annotated by the workflow developers,
+        # self.is_ondemand_eligible is by default set to False.
         ...
 
     # The following to methods are only required if the class inherits from
