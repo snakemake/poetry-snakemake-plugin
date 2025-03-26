@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.8.1](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.8.0...v0.8.1) (2025-03-26)
+
+
+### Bug Fixes
+
+* adapt to changes in storage interface 4.1.0 ([930e19f](https://github.com/snakemake/poetry-snakemake-plugin/commit/930e19fb3b23f54e7b5a9e1b9e1aaf7df2bd9b64))
+* adapt to snakemake 9 main codebase refactoring ([25b4c6a](https://github.com/snakemake/poetry-snakemake-plugin/commit/25b4c6ab4857fe204d926b8318e92db254822fc0))
+
+
+### Documentation
+
+* add info about improved storage interface ([ba62af2](https://github.com/snakemake/poetry-snakemake-plugin/commit/ba62af2a2a768685ec6212b0d60a7252cb42d1c7))
+
 ## [0.8.0](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.7.2...v0.8.0) (2025-03-14)
 
 
