@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.2](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.8.1...v0.8.2) (2025-04-08)
+
+
+### Bug Fixes
+
+* add method for returning local footprint in storage objects ([b7b646c](https://github.com/snakemake/poetry-snakemake-plugin/commit/b7b646cc59246444f9512d822c3b127864273377))
+
 ## [0.8.1](https://github.com/snakemake/poetry-snakemake-plugin/compare/v0.8.0...v0.8.1) (2025-03-26)
 
 
