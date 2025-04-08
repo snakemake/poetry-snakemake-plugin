@@ -189,6 +189,17 @@ class StorageObject(StorageObjectRead, StorageObjectWrite, StorageObjectGlob):
         ...
 
     @retry_decorator
+    def local_footprint(self) -> int:
+        # Local footprint is the size of the object on the local disk.
+        # For directories, this should return the recursive sum of the
+        # directory file sizes.
+        # If the storage provider supports ondemand eligibility (see retrieve_object()
+        # below), this should return 0 if the object is not downloaded but e.g.
+        # mounted upon retrieval.
+        # If this method is not overwritten here, it defaults to self.size().
+        ...
+
+    @retry_decorator
     def retrieve_object(self):
         # Ensure that the object is accessible locally under self.local_path()
         # Optionally, this can make use of the attribute self.is_ondemand_eligible,
