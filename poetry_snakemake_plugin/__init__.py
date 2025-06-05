@@ -11,6 +11,10 @@ from poetry_snakemake_plugin.software_deployment_plugins import (
     ScaffoldSnakemakeSoftwareDeploymentPluginCommand,
 )
 
+from poetry_snakemake_plugin.logger_plugins import (
+    ScaffoldSnakemakeLoggerPluginCommand,
+)
+
 
 class ScaffoldSnakemakeExecutorPlugin(ApplicationPlugin):
     def activate(self, application):
@@ -29,4 +33,8 @@ class ScaffoldSnakemakeExecutorPlugin(ApplicationPlugin):
         application.command_loader.register_factory(
             ScaffoldSnakemakeSoftwareDeploymentPluginCommand.name,
             ScaffoldSnakemakeSoftwareDeploymentPluginCommand,
+        )
+        application.command_loader.register_factory(
+            ScaffoldSnakemakeLoggerPluginCommand.name,
+            ScaffoldSnakemakeLoggerPluginCommand,
         )
