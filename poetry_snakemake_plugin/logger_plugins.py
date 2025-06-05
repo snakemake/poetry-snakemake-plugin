@@ -4,7 +4,7 @@ from typing import List
 from poetry_snakemake_plugin.common import ScaffoldSnakemakePluginCommandBase
 
 
-class ScaffoldSnakemakeStoragePluginCommand(ScaffoldSnakemakePluginCommandBase):
+class ScaffoldSnakemakeLoggerPluginCommand(ScaffoldSnakemakePluginCommandBase):
     name = "scaffold-snakemake-logger-plugin"
     description = (
         "Scaffolds a snakemake logger plugin by adding recommended "
